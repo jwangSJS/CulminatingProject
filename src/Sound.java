@@ -25,7 +25,7 @@ public class Sound {
         }
     }
 
-    KeyCode wasPressed = null; // handle continuous keyEvents from holding down a key
+    KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
     public void play(KeyEvent event) {
         Note note = findNote(event);
