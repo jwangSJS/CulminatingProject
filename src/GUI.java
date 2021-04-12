@@ -1,32 +1,37 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
     Button buttonC;
+    Button buttonCs;
+    Button buttonDs;
     Button buttonD;
     Button buttonE;
     Button buttonF;
+    Button buttonFs;
     Button buttonG;
+    Button buttonGs;
     Button buttonA;
+    Button buttonAs;
     Button buttonB;
     Button buttonC1;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Piano");
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(10);
-        grid.setHgap(8);
+        Pane pane = new Pane();
+        pane.setPadding(new Insets(10, 10, 10, 10));
 
-        // TODO: stop program when window is closed
-        // TODO: add minor keys
+        Scene scene = new Scene(pane, 600, 300);
+
         // TODO: add octave slider/text field
 
         Sound sound = new Sound();
@@ -34,42 +39,70 @@ public class GUI extends Application {
         String modC = sound.modC;
 
         buttonC = new Button("C");
-        GridPane.setConstraints(buttonC, 0, 0);
+        btLayout(buttonC, 100, 100);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + mod));
 
+        buttonCs = new Button("C#");
+        btLayout(buttonCs, 110, 70);
+        buttonCs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C#" + mod));
+
         buttonD = new Button("D");
-        GridPane.setConstraints(buttonD, 1, 0);
+        btLayout(buttonD, 130, 100);
         buttonD.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "D" + mod));
 
+        buttonDs = new Button("D#");
+        btLayout(buttonDs, 140, 70);
+        buttonDs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "D#" + mod));
+
         buttonE = new Button("E");
-        GridPane.setConstraints(buttonE, 2, 0);
+        btLayout(buttonE, 160, 100);
         buttonE.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "E" + mod));
 
         buttonF = new Button("F");
-        GridPane.setConstraints(buttonF, 3, 0);
+        btLayout(buttonF, 190, 100);
         buttonF.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "F" + mod));
 
+        buttonFs = new Button("F#");
+        btLayout(buttonFs, 200, 70);
+        buttonFs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "F#" + mod));
+
         buttonG = new Button("G");
-        GridPane.setConstraints(buttonG, 4, 0);
+        btLayout(buttonG, 220, 100);
         buttonG.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "G" + mod));
 
+        buttonGs = new Button("G#");
+        btLayout(buttonGs, 230, 70);
+        buttonGs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "G#" + mod));
+
         buttonA = new Button("A");
-        GridPane.setConstraints(buttonA, 5, 0);
+        btLayout(buttonA, 250, 100);
         buttonA.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "A" + mod));
 
+        buttonAs = new Button("A#");
+        btLayout(buttonAs, 260, 70);
+        buttonAs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "A#" + mod));
+
         buttonB = new Button("B");
-        GridPane.setConstraints(buttonB, 6, 0);
+        btLayout(buttonB, 280, 100);
         buttonB.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "B" + mod));
 
         buttonC1 = new Button("C");
-        GridPane.setConstraints(buttonC1, 7, 0);
+        btLayout(buttonC1, 310, 100);
         buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + modC));
 
-        grid.addEventFilter(KeyEvent.ANY, keyEvent -> sound.play(keyEvent));
+        pane.addEventFilter(KeyEvent.ANY, keyEvent -> sound.play(keyEvent));
 
-        grid.getChildren().addAll(buttonC, buttonD, buttonE, buttonF, buttonG, buttonA, buttonB, buttonC1);
-        Scene scene = new Scene(grid, 300, 100);
+        primaryStage.setOnCloseRequest(closeEvent -> { Runtime.getRuntime().halt(0); });
+
+        pane.getChildren().addAll(buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG,
+                buttonGs, buttonA, buttonAs, buttonB, buttonC1);
+
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void btLayout(Button button, int x, int y){
+        button.setLayoutX(x);
+        button.setLayoutY(y);
     }
 }
