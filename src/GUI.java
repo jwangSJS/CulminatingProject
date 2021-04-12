@@ -30,8 +30,8 @@ public class GUI extends Application {
         Scene scene = new Scene(pane, 600, 300);
 
         Sound sound = new Sound();
-        String mod = sound.mod;
-        String modC = sound.modC;
+        String mod = sound.mod; // octave modifier
+        String modC = sound.modC; // special octave modifier for last note
 
         buttonC = new Button("C");
         btLayout(buttonC, 100, 100);
