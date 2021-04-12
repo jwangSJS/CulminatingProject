@@ -1,11 +1,9 @@
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -29,10 +27,7 @@ public class GUI extends Application {
         primaryStage.setTitle("Piano");
         Pane pane = new Pane();
         pane.setPadding(new Insets(10, 10, 10, 10));
-
         Scene scene = new Scene(pane, 600, 300);
-
-        // TODO: add octave slider/text field
 
         Sound sound = new Sound();
         String mod = sound.mod;
