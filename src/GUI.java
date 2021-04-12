@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +32,6 @@ public class GUI extends Application {
 
         Scene scene = new Scene(pane, 600, 300);
 
-        // TODO: stop program when window is closed
         // TODO: add octave slider/text field
 
         Sound sound = new Sound();
@@ -91,6 +91,8 @@ public class GUI extends Application {
         buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + modC));
 
         pane.addEventFilter(KeyEvent.ANY, keyEvent -> sound.play(keyEvent));
+
+        primaryStage.setOnCloseRequest(closeEvent -> { Runtime.getRuntime().halt(0); });
 
         pane.getChildren().addAll(buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG,
                 buttonGs, buttonA, buttonAs, buttonB, buttonC1);
