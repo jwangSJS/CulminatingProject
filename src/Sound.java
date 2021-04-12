@@ -46,29 +46,19 @@ public class Sound {
         switch (event.getCode()) {
             case A:
                 return new Note("C" + mod);
-            case W:
-                return new Note("C#" + mod);
             case S:
                 return new Note("D" + mod);
-            case E:
-                return new Note("D#" + mod);
             case D:
                 return new Note("E" + mod);
             case F:
                 return new Note("F" + mod);
-            case T:
-                return new Note("F#" + mod);
-            case G:
-                return new Note("G" + mod);
-            case Y:
-                return new Note("G#" + mod);
-            case H:
-                return new Note("A" + mod);
-            case U:
-                return new Note("A#" + mod);
             case J:
-                return new Note("B" + mod);
+                return new Note("G" + mod);
             case K:
+                return new Note("A" + mod);
+            case L:
+                return new Note("B" + mod);
+            case SEMICOLON:
                 return new Note("C" + modC);
         }
         return null;
