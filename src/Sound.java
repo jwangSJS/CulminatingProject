@@ -6,13 +6,15 @@ import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
 
 public class Sound {
-    public String mod; // octave modifier
-    public String modC; // special octave modifier for last note
+    public String mod; // first octave modifier
+    public String mod1; // second octave modifier
+    public String mod2; // third octave modifier
     RealtimePlayer player = new RealtimePlayer();
 
     public Sound() throws MidiUnavailableException {
         this.mod = "5";
-        this.modC = String.valueOf(Integer.valueOf(mod) + 1);
+        this.mod1 = String.valueOf(Integer.valueOf(mod) + 1);
+        this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
     public void play(MouseEvent event, String n) {
@@ -43,34 +45,33 @@ public class Sound {
 
     // converts the keybind to notes
     private Note findNote(KeyEvent event){
-        switch (event.getCode()) {
-            case A:
-                return new Note("C" + mod);
-            case W:
-                return new Note("C#" + mod);
-            case S:
-                return new Note("D" + mod);
-            case E:
-                return new Note("D#" + mod);
-            case D:
-                return new Note("E" + mod);
-            case F:
-                return new Note("F" + mod);
-            case T:
-                return new Note("F#" + mod);
-            case G:
-                return new Note("G" + mod);
-            case Y:
-                return new Note("G#" + mod);
-            case H:
-                return new Note("A" + mod);
-            case U:
-                return new Note("A#" + mod);
-            case J:
-                return new Note("B" + mod);
-            case K:
-                return new Note("C" + modC);
-        }
-        return null;
+        return switch (event.getCode()) {
+            case Q -> new Note("C" + mod);
+            case DIGIT2 -> new Note("C#" + mod);
+            case W -> new Note("D" + mod);
+            case DIGIT3 -> new Note("D#" + mod);
+            case E -> new Note("E" + mod);
+            case R -> new Note("F" + mod);
+            case DIGIT5 -> new Note("F#" + mod);
+            case T -> new Note("G" + mod);
+            case DIGIT6 -> new Note("G#" + mod);
+            case Y -> new Note("A" + mod);
+            case DIGIT7 -> new Note("A#" + mod);
+            case U -> new Note("B" + mod);
+            case I -> new Note("C" + mod1);
+            case DIGIT9 -> new Note("C#" + mod1);
+            case O -> new Note("D" + mod1);
+            case DIGIT0 -> new Note("D#" + mod1);
+            case P -> new Note("E" + mod1);
+            case Z -> new Note("F" + mod1);
+            case S -> new Note("F#" + mod1);
+            case X -> new Note("G" + mod1);
+            case D -> new Note("G#" + mod1);
+            case C -> new Note("A" + mod1);
+            case F -> new Note("A#" + mod1);
+            case V -> new Note("B" + mod1);
+            case B -> new Note("C" + mod2);
+            default -> null;
+        };
     }
 }
