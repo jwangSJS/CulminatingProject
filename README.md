@@ -1,5 +1,6 @@
 CulminatingProject - Virtual Piano
 ==================================
+James Wang - PDS - Garvin
 
 This program simulates a piano using JavaFX and JFugue.
 
@@ -12,8 +13,8 @@ with C, which will be relevant later.
 
 There are 5 unique black keys on a piano, which can be
 represented with two different notations:
-# = sharp, so A# would read as "A-sharp"
-b = flat, so Ab would read as "A-flat"
+The symbol # = sharp, so A# would read as "A-sharp"
+The symbol b = flat, so Ab would read as "A-flat"
 A# (or Bb), C# (or Db), D# (or Eb), F# (or Gb), and G# (or Ab).
 For this program, I have standardized the black key namess so 
 that they are always the 'sharp' designation. 
