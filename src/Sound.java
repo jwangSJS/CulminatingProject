@@ -1,3 +1,4 @@
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +10,7 @@ public class Sound {
     public String mod; // first octave modifier
     public String mod1; // second octave modifier
     public String mod2; // third octave modifier
+    GUI gui = new GUI();
     RealtimePlayer player = new RealtimePlayer();
 
     public Sound() throws MidiUnavailableException {
@@ -17,60 +19,65 @@ public class Sound {
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
-    public void play(MouseEvent event, String n) {
+    public void play(Button button, MouseEvent event, String n, String pHue) {
         Note note = new Note(n);
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
             player.startNote(note);
+            button.setStyle(pHue);
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
+            button.setStyle(null);
         }
     }
 
     KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
-    public void play(KeyEvent event) {
-        Note note = findNote(event);
-        if (note == null) return;
+    public void play(KeyEvent event, Button button, String pHue) {
+        String n = keyBindToNote(event);
+        if (n == null) { return; }
+        Note note = new Note(n);
         KeyCode isPressed = event.getCode();
 
         if (event.getEventType().equals(KeyEvent.KEY_PRESSED) && isPressed != wasPressed) {
             player.startNote(note);
+            button.setStyle(pHue);
             wasPressed = event.getCode();
         } else if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             player.stopNote(note);
+            button.setStyle(null);
             wasPressed = null;
         }
     }
 
     // converts the keybind to notes
-    private Note findNote(KeyEvent event){
+    private String keyBindToNote(KeyEvent event){
         return switch (event.getCode()) {
-            case Q -> new Note("C" + mod);
-            case DIGIT2 -> new Note("C#" + mod);
-            case W -> new Note("D" + mod);
-            case DIGIT3 -> new Note("D#" + mod);
-            case E -> new Note("E" + mod);
-            case R -> new Note("F" + mod);
-            case DIGIT5 -> new Note("F#" + mod);
-            case T -> new Note("G" + mod);
-            case DIGIT6 -> new Note("G#" + mod);
-            case Y -> new Note("A" + mod);
-            case DIGIT7 -> new Note("A#" + mod);
-            case U -> new Note("B" + mod);
-            case I -> new Note("C" + mod1);
-            case DIGIT9 -> new Note("C#" + mod1);
-            case O -> new Note("D" + mod1);
-            case DIGIT0 -> new Note("D#" + mod1);
-            case P -> new Note("E" + mod1);
-            case Z -> new Note("F" + mod1);
-            case S -> new Note("F#" + mod1);
-            case X -> new Note("G" + mod1);
-            case D -> new Note("G#" + mod1);
-            case C -> new Note("A" + mod1);
-            case F -> new Note("A#" + mod1);
-            case V -> new Note("B" + mod1);
-            case B -> new Note("C" + mod2);
+            case Q -> "C" + mod;
+            case DIGIT2 -> "C#" + mod;
+            case W -> "D" + mod;
+            case DIGIT3 -> "D#" + mod;
+            case E -> "E" + mod;
+            case R -> "F" + mod;
+            case DIGIT5 -> "F#" + mod;
+            case T -> "G" + mod;
+            case DIGIT6 -> "G#" + mod;
+            case Y -> "A" + mod;
+            case DIGIT7 -> "A#" + mod;
+            case U -> "B" + mod;
+            case I -> "C" + mod1;
+            case DIGIT9 -> "C#" + mod1;
+            case O -> "D" + mod1;
+            case DIGIT0 -> "D#" + mod1;
+            case P -> "E" + mod1;
+            case Z -> "F" + mod1;
+            case S -> "F#" + mod1;
+            case X -> "G" + mod1;
+            case D -> "G#" + mod1;
+            case C -> "A" + mod1;
+            case F -> "A#" + mod1;
+            case V -> "B" + mod1;
+            case B -> "C" + mod2;
             default -> null;
         };
     }
