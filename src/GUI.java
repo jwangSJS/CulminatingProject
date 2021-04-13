@@ -49,6 +49,7 @@ public class GUI extends Application {
         buttonC = new Button("C");
         btLayout(buttonC, 100, 100);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + mod));
+        // buttonC.setStyle("-fx-background-color: #ff0000; ");
 
         buttonCs = new Button("C#");
         btLayout(buttonCs, 110, 70);
