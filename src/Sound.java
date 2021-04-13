@@ -7,14 +7,13 @@ import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
 
 public class Sound {
-    public String mod; // first octave modifier
+    public String mod = "5"; // first octave modifier
     public String mod1; // second octave modifier
     public String mod2; // third octave modifier
-    GUI gui = new GUI();
     RealtimePlayer player = new RealtimePlayer();
 
     public Sound() throws MidiUnavailableException {
-        this.mod = "5";
+        this.mod = mod;
         this.mod1 = String.valueOf(Integer.valueOf(mod) + 1);
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
@@ -24,7 +23,7 @@ public class Sound {
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
             player.startNote(note);
-            button.setStyle(pHue);
+            button.setStyle(pHue); // change button color when pressed
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
             button.setStyle(null);
@@ -41,7 +40,7 @@ public class Sound {
 
         if (event.getEventType().equals(KeyEvent.KEY_PRESSED) && isPressed != wasPressed) {
             player.startNote(note);
-            button.setStyle(pHue);
+            button.setStyle(pHue); // change button color when pressed
             wasPressed = event.getCode();
         } else if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             player.stopNote(note);

@@ -49,102 +49,102 @@ public class GUI extends Application {
         String mod2 = sound.mod2; // third octave modifier
 
         buttonC = new Button("C");
-        btLayout(buttonC, 100, 100);
+        setButtonLayout(buttonC, 100, 100);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonC, mouseEvent, "C" + mod, pHue));
 
         buttonCs = new Button("C#");
-        btLayout(buttonCs, 110, 70);
+        setButtonLayout(buttonCs, 110, 70);
         buttonCs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonCs, mouseEvent, "C#" + mod, pHue));
 
         buttonD = new Button("D");
-        btLayout(buttonD, 130, 100);
+        setButtonLayout(buttonD, 130, 100);
         buttonD.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonD, mouseEvent, "D" + mod, pHue));
 
         buttonDs = new Button("D#");
-        btLayout(buttonDs, 140, 70);
+        setButtonLayout(buttonDs, 140, 70);
         buttonDs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonDs, mouseEvent, "D#" + mod, pHue));
 
         buttonE = new Button("E");
-        btLayout(buttonE, 160, 100);
+        setButtonLayout(buttonE, 160, 100);
         buttonE.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonE, mouseEvent, "E" + mod, pHue));
 
         buttonF = new Button("F");
-        btLayout(buttonF, 190, 100);
+        setButtonLayout(buttonF, 190, 100);
         buttonF.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonF, mouseEvent, "F" + mod, pHue));
 
         buttonFs = new Button("F#");
-        btLayout(buttonFs, 200, 70);
+        setButtonLayout(buttonFs, 200, 70);
         buttonFs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonFs, mouseEvent, "F#" + mod, pHue));
 
         buttonG = new Button("G");
-        btLayout(buttonG, 220, 100);
+        setButtonLayout(buttonG, 220, 100);
         buttonG.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonG, mouseEvent, "G" + mod, pHue));
 
         buttonGs = new Button("G#");
-        btLayout(buttonGs, 230, 70);
+        setButtonLayout(buttonGs, 230, 70);
         buttonGs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonGs, mouseEvent, "G#" + mod, pHue));
         buttonA = new Button("A");
-        btLayout(buttonA, 250, 100);
+        setButtonLayout(buttonA, 250, 100);
         buttonA.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonA, mouseEvent, "A" + mod, pHue));
 
         buttonAs = new Button("A#");
-        btLayout(buttonAs, 260, 70);
+        setButtonLayout(buttonAs, 260, 70);
         buttonAs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonAs, mouseEvent, "A#" + mod, pHue));
 
         buttonB = new Button("B");
-        btLayout(buttonB, 280, 100);
+        setButtonLayout(buttonB, 280, 100);
         buttonB.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonB, mouseEvent, "B" + mod, pHue));
 
         buttonC1 = new Button("C");
-        btLayout(buttonC1, 310, 100);
+        setButtonLayout(buttonC1, 310, 100);
         buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonC1, mouseEvent, "C" + mod1, pHue));
 
         buttonCs1 = new Button("C#");
-        btLayout(buttonCs1, 320, 70);
+        setButtonLayout(buttonCs1, 320, 70);
         buttonCs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonCs1, mouseEvent, "C#" + mod1, pHue));
 
         buttonD1 = new Button("D");
-        btLayout(buttonD1, 340, 100);
+        setButtonLayout(buttonD1, 340, 100);
         buttonD1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonD1, mouseEvent, "D" + mod1, pHue));
 
         buttonDs1 = new Button("D#");
-        btLayout(buttonDs1, 350, 70);
+        setButtonLayout(buttonDs1, 350, 70);
         buttonDs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonDs1, mouseEvent, "D#" + mod1, pHue));
 
         buttonE1 = new Button("E");
-        btLayout(buttonE1, 370, 100);
+        setButtonLayout(buttonE1, 370, 100);
         buttonE1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonE1, mouseEvent, "E" + mod1, pHue));
 
         buttonF1 = new Button("F");
-        btLayout(buttonF1, 400, 100);
+        setButtonLayout(buttonF1, 400, 100);
         buttonF1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonF1, mouseEvent, "F" + mod1, pHue));
 
         buttonFs1 = new Button("F#");
-        btLayout(buttonFs1, 410, 70);
+        setButtonLayout(buttonFs1, 410, 70);
         buttonFs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonFs1, mouseEvent, "F#" + mod1, pHue));
 
         buttonG1 = new Button("G");
-        btLayout(buttonG1, 430, 100);
+        setButtonLayout(buttonG1, 430, 100);
         buttonG1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonG1, mouseEvent, "G" + mod1, pHue));
 
         buttonGs1 = new Button("G#");
-        btLayout(buttonGs1, 440, 70);
+        setButtonLayout(buttonGs1, 440, 70);
         buttonGs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonGs1, mouseEvent, "G#" + mod1, pHue));
 
         buttonA1 = new Button("A");
-        btLayout(buttonA1, 460, 100);
+        setButtonLayout(buttonA1, 460, 100);
         buttonA1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonA1, mouseEvent, "A" + mod1, pHue));
 
         buttonAs1 = new Button("A#");
-        btLayout(buttonAs1, 470, 70);
+        setButtonLayout(buttonAs1, 470, 70);
         buttonAs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonAs1, mouseEvent, "A#" + mod1, pHue));
 
         buttonB1 = new Button("B");
-        btLayout(buttonB1, 490, 100);
+        setButtonLayout(buttonB1, 490, 100);
         buttonB1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonB1, mouseEvent, "B" + mod1, pHue));
 
         buttonC2 = new Button("C");
-        btLayout(buttonC2, 520, 100);
+        setButtonLayout(buttonC2, 520, 100);
         buttonC2.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonC2, mouseEvent, "C" + mod2, pHue));
 
         pane.addEventFilter(KeyEvent.ANY, keyEvent -> sound.play(keyEvent, keyBindToButton(keyEvent), pHue));
@@ -159,7 +159,7 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    private void btLayout(Button button, int x, int y) {
+    private void setButtonLayout(Button button, int x, int y) {
         button.setLayoutX(x);
         button.setLayoutY(y);
     }
