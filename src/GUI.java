@@ -21,6 +21,18 @@ public class GUI extends Application {
     Button buttonAs;
     Button buttonB;
     Button buttonC1;
+    Button buttonCs1;
+    Button buttonD1;
+    Button buttonDs1;
+    Button buttonE1;
+    Button buttonF1;
+    Button buttonF1s;
+    Button buttonG1;
+    Button buttonGs1;
+    Button buttonA1;
+    Button buttonAs1;
+    Button buttonB1;
+    Button buttonC2;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -30,8 +42,9 @@ public class GUI extends Application {
         Scene scene = new Scene(pane, 600, 300);
 
         Sound sound = new Sound();
-        String mod = sound.mod; // octave modifier
-        String modC = sound.modC; // special octave modifier for last note
+        String mod = sound.mod; // first octave modifier
+        String mod1 = sound.mod1; // second octave modifier
+        String mod2 = sound.mod2; // third octave modifier
 
         buttonC = new Button("C");
         btLayout(buttonC, 100, 100);
@@ -83,14 +96,63 @@ public class GUI extends Application {
 
         buttonC1 = new Button("C");
         btLayout(buttonC1, 310, 100);
-        buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + modC));
+        buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + mod1));
+
+        buttonCs1 = new Button("C#");
+        btLayout(buttonCs1, 320, 70);
+        buttonCs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C#" + mod1));
+
+        buttonD1 = new Button("D");
+        btLayout(buttonD1, 340, 100);
+        buttonD1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "D" + mod1));
+
+        buttonDs1 = new Button("D#");
+        btLayout(buttonDs1, 350, 70);
+        buttonDs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "D#" + mod1));
+
+        buttonE1 = new Button("E");
+        btLayout(buttonE1, 370, 100);
+        buttonE1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "E" + mod1));
+
+        buttonF1 = new Button("F");
+        btLayout(buttonF1, 400, 100);
+        buttonF1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "F" + mod1));
+
+        buttonF1s = new Button("F#");
+        btLayout(buttonF1s, 410, 70);
+        buttonF1s.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "F#" + mod1));
+
+        buttonG1 = new Button("G");
+        btLayout(buttonG1, 430, 100);
+        buttonG1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "G" + mod1));
+
+        buttonGs1 = new Button("G#");
+        btLayout(buttonGs1, 440, 70);
+        buttonGs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "G#" + mod1));
+
+        buttonA1 = new Button("A");
+        btLayout(buttonA1, 460, 100);
+        buttonA1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "A" + mod1));
+
+        buttonAs1 = new Button("A#");
+        btLayout(buttonAs1, 470, 70);
+        buttonAs1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "A#" + mod1));
+
+        buttonB1 = new Button("B");
+        btLayout(buttonB1, 490, 100);
+        buttonB1.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "B" + mod1));
+
+        buttonC2 = new Button("C");
+        btLayout(buttonC2, 520, 100);
+        buttonC2.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(mouseEvent, "C" + mod2));
 
         pane.addEventFilter(KeyEvent.ANY, keyEvent -> sound.play(keyEvent));
 
         primaryStage.setOnCloseRequest(closeEvent -> { Runtime.getRuntime().halt(0); });
 
         pane.getChildren().addAll(buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG,
-                buttonGs, buttonA, buttonAs, buttonB, buttonC1);
+                buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1,
+                buttonF1s, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
 
         primaryStage.setScene(scene);
         primaryStage.show();
