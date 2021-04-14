@@ -18,7 +18,7 @@ public class Sound {
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
-    public void play(Button button, MouseEvent event, String n, String pHue) {
+    public void play(Button button, MouseEvent event, String n, String pHue, String style) {
         Note note = new Note(n);
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
@@ -26,13 +26,13 @@ public class Sound {
             button.setStyle(pHue); // change button color when pressed
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
-            button.setStyle(null);
+            button.setStyle(style);
         }
     }
 
     KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
-    public void play(KeyEvent event, Button button, String pHue) {
+    public void play(KeyEvent event, Button button, String pHue, String style) {
         String n = keyBindToNote(event);
         if (n == null) { return; }
         Note note = new Note(n);
@@ -44,7 +44,7 @@ public class Sound {
             wasPressed = event.getCode();
         } else if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             player.stopNote(note);
-            button.setStyle(null);
+            button.setStyle(style);
             wasPressed = null;
         }
     }
