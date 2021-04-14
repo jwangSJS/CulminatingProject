@@ -2,10 +2,13 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
 
 public class GUI extends Application {
     Button buttonC;
@@ -177,8 +180,10 @@ public class GUI extends Application {
         buttonC2.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonC2, mouseEvent, "C" + mod2, pHue, wStyle));
 
+        HashMap<KeyCode, Button> buttonRef = initializeHashMap();
+
         pane.addEventFilter(KeyEvent.ANY, keyEvent ->
-                sound.play(keyEvent, keyBindToButton(keyEvent), pHue, getButtonStyle(keyEvent)));
+                sound.play(keyEvent, buttonRef.get(keyEvent.getCode()), pHue, getButtonStyle(keyEvent)));
 
         primaryStage.setOnCloseRequest(closeEvent -> { Runtime.getRuntime().halt(0); });
 
@@ -196,42 +201,41 @@ public class GUI extends Application {
         button.setStyle(style);
     }
 
-    private Button keyBindToButton(KeyEvent e) {
-        return switch (e.getCode()) {
-            case Q -> buttonC;
-            case DIGIT2 -> buttonCs;
-            case W -> buttonD;
-            case DIGIT3 -> buttonDs;
-            case E -> buttonE;
-            case R -> buttonF;
-            case DIGIT5 -> buttonFs;
-            case T -> buttonG;
-            case DIGIT6 -> buttonGs;
-            case Y -> buttonA;
-            case DIGIT7 -> buttonAs;
-            case U -> buttonB;
-            case I -> buttonC1;
-            case DIGIT9 -> buttonCs1;
-            case O -> buttonD1;
-            case DIGIT0 -> buttonDs1;
-            case P -> buttonE1;
-            case Z -> buttonF1;
-            case S -> buttonFs1;
-            case X -> buttonG1;
-            case D -> buttonGs1;
-            case C -> buttonA1;
-            case F -> buttonAs1;
-            case V -> buttonB1;
-            case B -> buttonC2;
-            default -> null;
-        };
-    }
-
     private String getButtonStyle(KeyEvent e) {
         return switch(e.getCode()) {
             case Q, W , E, R, T, Y, U, I, O, P, Z, X, C, V, B -> wStyle;
             case DIGIT2, DIGIT3, DIGIT5, DIGIT6, DIGIT7, DIGIT9, DIGIT0, S, D, F -> bStyle;
             default -> null;
         };
+    }
+
+    private HashMap<KeyCode, Button> initializeHashMap(){
+        HashMap<KeyCode, Button> buttonReference = new HashMap<KeyCode, Button>();
+        buttonReference.put(KeyCode.Q, buttonC);
+        buttonReference.put(KeyCode.DIGIT2, buttonCs);
+        buttonReference.put(KeyCode.W, buttonD);
+        buttonReference.put(KeyCode.DIGIT3, buttonDs);
+        buttonReference.put(KeyCode.E, buttonE);
+        buttonReference.put(KeyCode.R, buttonF);
+        buttonReference.put(KeyCode.DIGIT5, buttonFs);
+        buttonReference.put(KeyCode.T, buttonG);
+        buttonReference.put(KeyCode.DIGIT6, buttonGs);
+        buttonReference.put(KeyCode.Y, buttonA);
+        buttonReference.put(KeyCode.DIGIT7, buttonAs);
+        buttonReference.put(KeyCode.U, buttonB);
+        buttonReference.put(KeyCode.I, buttonC1);
+        buttonReference.put(KeyCode.DIGIT9, buttonCs1);
+        buttonReference.put(KeyCode.O, buttonD);
+        buttonReference.put(KeyCode.DIGIT0, buttonDs1);
+        buttonReference.put(KeyCode.P, buttonE1);
+        buttonReference.put(KeyCode.Z, buttonF1);
+        buttonReference.put(KeyCode.S, buttonFs1);
+        buttonReference.put(KeyCode.X, buttonG1);
+        buttonReference.put(KeyCode.D, buttonGs1);
+        buttonReference.put(KeyCode.C, buttonA1);
+        buttonReference.put(KeyCode.F, buttonAs1);
+        buttonReference.put(KeyCode.V, buttonB1);
+        buttonReference.put(KeyCode.B, buttonC2);
+        return buttonReference;
     }
 }
