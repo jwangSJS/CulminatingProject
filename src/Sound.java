@@ -11,6 +11,7 @@ public class Sound {
     public String mod1; // second octave modifier
     public String mod2; // third octave modifier
     RealtimePlayer player = new RealtimePlayer();
+    int instrument = 118;
 
     public Sound() throws MidiUnavailableException {
         this.mod = mod;
@@ -19,6 +20,7 @@ public class Sound {
     }
 
     public void play(Button button, MouseEvent event, String n, String pHue, String style) {
+        player.changeInstrument(instrument);
         Note note = new Note(n);
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
@@ -33,6 +35,7 @@ public class Sound {
     KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
     public void play(KeyEvent event, Button button, String pHue, String style) {
+        player.changeInstrument(instrument);
         String n = keyBindToNote(event);
         if (n == null) { return; }
         Note note = new Note(n);
