@@ -83,6 +83,7 @@ public class GUI extends Application {
         buttonGs = new Button("G#");
         setButtonLayout(buttonGs, 230, 70);
         buttonGs.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonGs, mouseEvent, "G#" + mod, pHue));
+
         buttonA = new Button("A");
         setButtonLayout(buttonA, 250, 100);
         buttonA.addEventFilter(MouseEvent.ANY, mouseEvent -> sound.play(buttonA, mouseEvent, "A" + mod, pHue));
