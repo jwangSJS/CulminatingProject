@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -68,14 +69,28 @@ public class GUI extends Application {
 
         Sound sound = new Sound();
 
+        // combination box to select octaves
         String[] octaves = {"1", "2", "3", "4", "5", "6", "7"};
         ComboBox octaveCombo = new ComboBox(FXCollections.observableArrayList(octaves));
-        setNodeLayout(octaveCombo, 500, 230);
+        setNodeLayout(octaveCombo, 500, 240);
         octaveCombo.getSelectionModel().select(3);
         octaveCombo.setOnAction(actionEvent -> sound.changeOctave(String.valueOf(octaveCombo.getValue())));
 
         Label octaveLabel = new Label("Select octave:");
-        setNodeLayout(octaveLabel, 490, 210);
+        setNodeLayout(octaveLabel, 490, 220);
+
+        // textfield to select instrument
+        TextField instrumentSelector = new TextField();
+        instrumentSelector.setPrefSize(50, 20);
+        setNodeLayout(instrumentSelector, 350, 240);
+
+        Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
+        setNodeLayout(instrumentLabel, 320, 220);
+
+        Button instrumentConfirm = new Button("Enter");
+        setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
+        instrumentConfirm.setOnAction(actionEvent ->
+                sound.changeInstrument(instrumentLabel, instrumentSelector.getText()));
 
         // instantiate buttons and handle mouse clicks for each button
         buttonC = new Button("C");
@@ -212,10 +227,10 @@ public class GUI extends Application {
         // stop the program safely when window is closed
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
-        pane.getChildren().addAll(octaveCombo, octaveLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE,
-                buttonF, buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1,
-                buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1,
-                buttonAs1, buttonB1, buttonC2);
+        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel,
+                buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs, buttonA,
+                buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1,
+                buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
 
         primaryStage.setScene(scene);
         primaryStage.show();

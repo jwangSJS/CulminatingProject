@@ -1,7 +1,9 @@
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.jfugue.midi.MidiDictionary;
 import org.jfugue.realtime.RealtimePlayer;
 import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
@@ -60,6 +62,29 @@ public class Sound {
         mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
+    public void changeInstrument(Label instrumentLabel, String inst) {
+        if (inst.equals("")) {
+            return;
+        }
+        try {
+            Integer.parseInt(inst);
+        } catch (NumberFormatException nfe) {
+            return;
+        }
+        int checkInst = Integer.parseInt(inst);
+        if (checkInst < 1) {
+            instrument = 1;
+            instrumentLabel.setText(findInstrumentName());
+            return;
+        } else if (checkInst > 127) {
+            instrument = 127;
+            instrumentLabel.setText(findInstrumentName());
+            return;
+        }
+        instrument = checkInst;
+        instrumentLabel.setText(findInstrumentName());
+    }
+
     // converts the keybind to notes
     private String keyBindToNote(KeyEvent event) {
         return switch (event.getCode()) {
@@ -99,5 +124,9 @@ public class Sound {
             case 2 -> mod2;
             default -> null;
         };
+    }
+
+    public String findInstrumentName() {
+        return MidiDictionary.INSTRUMENT_BYTE_TO_STRING.get((byte) instrument);
     }
 }
