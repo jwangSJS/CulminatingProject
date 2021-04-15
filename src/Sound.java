@@ -1,5 +1,6 @@
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -83,6 +84,16 @@ public class Sound {
         }
         instrument = checkInst;
         instrumentLabel.setText(findInstrumentName());
+    }
+
+    // increment through instruments using two increment buttons
+    public void changeInstrument(Label instrumentLabel, TextField instrumentField, String inst, int increment) {
+        int instrument = Integer.valueOf(inst) + increment;
+        if (instrument < 1 || instrument > 127) {
+            return;
+        }
+        changeInstrument(instrumentLabel, String.valueOf(instrument));
+        instrumentField.setText(String.valueOf(instrument));
     }
 
     // converts the keybind to notes

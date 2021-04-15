@@ -45,14 +45,14 @@ public class GUI extends Application {
     // white key style
     String wStyle = "-fx-border-color: black;" +
             "-fx-background-color: #ffffff;" +
-            "-fx-font-size:8";
+            "-fx-font-size:7";
     // black key style
     String bStyle = "-fx-background-color: #000000;" +
             "-fx-text-base-color: white;" +
             "-fx-font-size:7";
     // button style when pressed
     String pStyle = "-fx-background-color: #d94141; " +
-            "-fx-font-size:8";
+            "-fx-font-size:7";
 
     // sizes of keys
     int wX = 25;
@@ -83,14 +83,30 @@ public class GUI extends Application {
         TextField instrumentSelector = new TextField();
         instrumentSelector.setPrefSize(50, 20);
         setNodeLayout(instrumentSelector, 350, 240);
+        instrumentSelector.setText("1");
 
         Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
         setNodeLayout(instrumentLabel, 320, 220);
+
+        String incrementInstrumentStyle = "-fx-font-size:9";
 
         Button instrumentConfirm = new Button("Enter");
         setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
         instrumentConfirm.setOnAction(actionEvent ->
                 sound.changeInstrument(instrumentLabel, instrumentSelector.getText()));
+
+        Button increaseInstrument = new Button("^");
+        setButtonLayout(increaseInstrument, 320, 240, incrementInstrumentStyle, 20, 20);
+        increaseInstrument.setOnAction(actionEvent ->
+                sound.changeInstrument(instrumentLabel, instrumentSelector,
+                        instrumentSelector.getText(), 1));
+
+        Button decreaseInstrument = new Button("v");
+        setButtonLayout(decreaseInstrument, 320, 260, incrementInstrumentStyle, 20, 20);
+        decreaseInstrument.setOnAction(actionEvent ->
+                //System.out.println(instrumentSelector.getText()));
+                sound.changeInstrument(instrumentLabel, instrumentSelector,
+                        instrumentSelector.getText(), -1));
 
         // instantiate buttons and handle mouse clicks for each button
         buttonC = new Button("C");
@@ -228,9 +244,9 @@ public class GUI extends Application {
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel,
-                buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs, buttonA,
-                buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1,
-                buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
+                increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs,
+                buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1,
+                buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
 
         primaryStage.setScene(scene);
         primaryStage.show();
