@@ -19,16 +19,18 @@ public class Sound {
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
-    public void play(Button button, MouseEvent event, String rawNote, int relativeOctave, String pStyle, String style) {
+    public void play(Button button, MouseEvent event, String rawNote, int relativeOctave,
+                     String pressedStyle, String defaultStyle) {
         player.changeInstrument(instrument);
+        // relative octave indicates note octave with respect to all other notes
         Note note = new Note(rawNote + findOctave(relativeOctave));
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
             player.startNote(note);
-            button.setStyle(pStyle); // change button color when pressed
+            button.setStyle(pressedStyle); // change button color when pressed
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
-            button.setStyle(style);
+            button.setStyle(defaultStyle);
         }
     }
 
@@ -91,13 +93,11 @@ public class Sound {
     }
 
     private String findOctave(int relativeOctave) {
-        switch (relativeOctave) {
-            case 0:
-                return mod;
-            case 1:
-                return mod1;
-            case 2: return mod2;
-        }
-        return null;
+        return switch (relativeOctave) {
+            case 0 -> mod;
+            case 1 -> mod1;
+            case 2 -> mod2;
+            default -> null;
+        };
     }
 }

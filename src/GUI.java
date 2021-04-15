@@ -67,12 +67,9 @@ public class GUI extends Application {
         Scene scene = new Scene(pane, 600, 300);
 
         Sound sound = new Sound();
-        String mod = sound.mod; // first octave modifier
-        String mod1 = sound.mod1; // second octave modifier
-        String mod2 = sound.mod2; // third octave modifier
 
         String[] octaves = {"1", "2", "3", "4", "5", "6", "7"};
-        ComboBox<Integer> octaveCombo = new ComboBox(FXCollections.observableArrayList(octaves));
+        ComboBox octaveCombo = new ComboBox(FXCollections.observableArrayList(octaves));
         setNodeLayout(octaveCombo, 500, 230);
         octaveCombo.getSelectionModel().select(3);
         octaveCombo.setOnAction(actionEvent -> sound.changeOctave(String.valueOf(octaveCombo.getValue())));
@@ -213,7 +210,7 @@ public class GUI extends Application {
                 sound.play(keyEvent, buttonRef.get(keyEvent.getCode()), pStyle, getButtonStyle(keyEvent)));
 
         // stop the program safely when window is closed
-        primaryStage.setOnCloseRequest(closeEvent -> { Runtime.getRuntime().halt(0); });
+        primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE,
                 buttonF, buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1,
@@ -231,7 +228,7 @@ public class GUI extends Application {
         button.setMaxSize(x1,y1);
         button.setStyle(style);
         button.setAlignment(Pos.BOTTOM_CENTER);
-        if (style == bStyle) {
+        if (style.equals(bStyle)) {
             button.setViewOrder(-1.0);
         }
     }
@@ -250,7 +247,7 @@ public class GUI extends Application {
     }
 
     private HashMap<KeyCode, Button> KeyBindToButtonMap(){
-        HashMap<KeyCode, Button> buttonReference = new HashMap<KeyCode, Button>();
+        HashMap<KeyCode, Button> buttonReference = new HashMap<>();
         buttonReference.put(KeyCode.Q, buttonC);
         buttonReference.put(KeyCode.DIGIT2, buttonCs);
         buttonReference.put(KeyCode.W, buttonD);
