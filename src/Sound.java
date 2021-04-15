@@ -11,7 +11,7 @@ public class Sound {
     public String mod1; // second octave modifier
     public String mod2; // third octave modifier
     RealtimePlayer player = new RealtimePlayer();
-    int instrument = 118;
+    int instrument = 1;
 
     public Sound() throws MidiUnavailableException {
         this.mod = mod;
@@ -19,13 +19,13 @@ public class Sound {
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
     }
 
-    public void play(Button button, MouseEvent event, String n, String pHue, String style) {
+    public void play(Button button, MouseEvent event, String rawNote, int relativeOctave, String pStyle, String style) {
         player.changeInstrument(instrument);
-        Note note = new Note(n);
+        Note note = new Note(rawNote + findOctave(relativeOctave));
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
             player.startNote(note);
-            button.setStyle(pHue); // change button color when pressed
+            button.setStyle(pStyle); // change button color when pressed
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
             button.setStyle(style);
@@ -34,7 +34,7 @@ public class Sound {
 
     KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
-    public void play(KeyEvent event, Button button, String pHue, String style) {
+    public void play(KeyEvent event, Button button, String pressedStyle, String defaultStyle) {
         player.changeInstrument(instrument);
         String n = keyBindToNote(event);
         if (n == null) { return; }
@@ -43,17 +43,23 @@ public class Sound {
 
         if (event.getEventType().equals(KeyEvent.KEY_PRESSED) && isPressed != wasPressed) {
             player.startNote(note);
-            button.setStyle(pHue); // change button color when pressed
+            button.setStyle(pressedStyle); // change button style when pressed
             wasPressed = event.getCode();
         } else if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             player.stopNote(note);
-            button.setStyle(style);
+            button.setStyle(defaultStyle);
             wasPressed = null;
         }
     }
 
+    public void changeOctave(String octave) {
+        mod = String.valueOf(Integer.valueOf(octave) + 1);
+        mod1 = String.valueOf(Integer.valueOf(mod) + 1);
+        mod2 = String.valueOf(Integer.valueOf(mod) + 2);
+    }
+
     // converts the keybind to notes
-    private String keyBindToNote(KeyEvent event){
+    private String keyBindToNote(KeyEvent event) {
         return switch (event.getCode()) {
             case Q -> "C" + mod;
             case DIGIT2 -> "C#" + mod;
@@ -82,5 +88,16 @@ public class Sound {
             case B -> "C" + mod2;
             default -> null;
         };
+    }
+
+    private String findOctave(int relativeOctave) {
+        switch (relativeOctave) {
+            case 0:
+                return mod;
+            case 1:
+                return mod1;
+            case 2: return mod2;
+        }
+        return null;
     }
 }
