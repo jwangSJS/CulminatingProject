@@ -56,7 +56,7 @@ public class GUI extends Application {
 
     // sizes of keys
     int wX = 25;
-    int wY = 100;
+    int wY = 140;
     int bX = 20;
     int bY = 100;
 
@@ -110,7 +110,7 @@ public class GUI extends Application {
 
         // instantiate buttons and handle mouse clicks for each button
         buttonC = new Button("C");
-        setButtonLayout(buttonC, 100, 100, wStyle, wX, wY);
+        setButtonLayout(buttonC, 100, 70, wStyle, wX, wY);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonC, mouseEvent, "C", 0, pStyle, wStyle));
 
@@ -120,7 +120,7 @@ public class GUI extends Application {
                 sound.play(buttonCs, mouseEvent, "C#", 0, pStyle, bStyle));
 
         buttonD = new Button("D");
-        setButtonLayout(buttonD, 130, 100, wStyle, wX, wY);
+        setButtonLayout(buttonD, 130, 70, wStyle, wX, wY);
         buttonD.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonD, mouseEvent, "D", 0, pStyle, wStyle));
 
@@ -130,12 +130,12 @@ public class GUI extends Application {
                 sound.play(buttonDs, mouseEvent, "D#", 0, pStyle, bStyle));
 
         buttonE = new Button("E");
-        setButtonLayout(buttonE, 160, 100, wStyle, wX, wY);
+        setButtonLayout(buttonE, 160, 70, wStyle, wX, wY);
         buttonE.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonE, mouseEvent, "E", 0, pStyle, wStyle));
 
         buttonF = new Button("F");
-        setButtonLayout(buttonF, 190, 100, wStyle, wX, wY);
+        setButtonLayout(buttonF, 190, 70, wStyle, wX, wY);
         buttonF.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonF, mouseEvent, "F", 0, pStyle, wStyle));
 
@@ -145,7 +145,7 @@ public class GUI extends Application {
                 sound.play(buttonFs, mouseEvent, "F#", 0, pStyle, bStyle));
 
         buttonG = new Button("G");
-        setButtonLayout(buttonG, 220, 100, wStyle, wX, wY);
+        setButtonLayout(buttonG, 220, 70, wStyle, wX, wY);
         buttonG.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonG, mouseEvent, "G", 0, pStyle, wStyle));
 
@@ -155,7 +155,7 @@ public class GUI extends Application {
                 sound.play(buttonGs, mouseEvent, "G#", 0, pStyle, bStyle));
 
         buttonA = new Button("A");
-        setButtonLayout(buttonA, 250, 100, wStyle, wX, wY);
+        setButtonLayout(buttonA, 250, 70, wStyle, wX, wY);
         buttonA.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonA, mouseEvent, "A", 0, pStyle, wStyle));
 
@@ -165,12 +165,12 @@ public class GUI extends Application {
                 sound.play(buttonAs, mouseEvent, "A#", 0, pStyle, bStyle));
 
         buttonB = new Button("B");
-        setButtonLayout(buttonB, 280, 100, wStyle, wX, wY);
+        setButtonLayout(buttonB, 280, 70, wStyle, wX, wY);
         buttonB.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonB, mouseEvent, "B", 0, pStyle, wStyle));
 
         buttonC1 = new Button("C");
-        setButtonLayout(buttonC1, 310, 100, wStyle, wX, wY);
+        setButtonLayout(buttonC1, 310, 70, wStyle, wX, wY);
         buttonC1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonC1, mouseEvent, "C", 1, pStyle, wStyle));
 
@@ -180,7 +180,7 @@ public class GUI extends Application {
                 sound.play(buttonCs1, mouseEvent, "C#", 1, pStyle, bStyle));
 
         buttonD1 = new Button("D");
-        setButtonLayout(buttonD1, 340, 100, wStyle, wX, wY);
+        setButtonLayout(buttonD1, 340, 70, wStyle, wX, wY);
         buttonD1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonD1, mouseEvent, "D", 1, pStyle, wStyle));
 
@@ -190,12 +190,12 @@ public class GUI extends Application {
                 sound.play(buttonDs1, mouseEvent, "D#", 1, pStyle, bStyle));
 
         buttonE1 = new Button("E");
-        setButtonLayout(buttonE1, 370, 100, wStyle, wX, wY);
+        setButtonLayout(buttonE1, 370, 70, wStyle, wX, wY);
         buttonE1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonE1, mouseEvent, "E", 1, pStyle, wStyle));
 
         buttonF1 = new Button("F");
-        setButtonLayout(buttonF1, 400, 100, wStyle, wX, wY);
+        setButtonLayout(buttonF1, 400, 70, wStyle, wX, wY);
         buttonF1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonF1, mouseEvent, "F", 1, pStyle, wStyle));
 
@@ -205,7 +205,7 @@ public class GUI extends Application {
                 sound.play(buttonFs1, mouseEvent, "F#", 1, pStyle, bStyle));
 
         buttonG1 = new Button("G");
-        setButtonLayout(buttonG1, 430, 100, wStyle, wX, wY);
+        setButtonLayout(buttonG1, 430, 70, wStyle, wX, wY);
         buttonG1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonG1, mouseEvent, "G", 1, pStyle, wStyle));
 
@@ -215,7 +215,7 @@ public class GUI extends Application {
                 sound.play(buttonGs1, mouseEvent, "G#", 1, pStyle, bStyle));
 
         buttonA1 = new Button("A");
-        setButtonLayout(buttonA1, 460, 100, wStyle, wX, wY);
+        setButtonLayout(buttonA1, 460, 70, wStyle, wX, wY);
         buttonA1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonA1, mouseEvent, "A", 1, pStyle, wStyle));
 
@@ -225,12 +225,12 @@ public class GUI extends Application {
                 sound.play(buttonAs1, mouseEvent, "A#", 1, pStyle, bStyle));
 
         buttonB1 = new Button("B");
-        setButtonLayout(buttonB1, 490, 100, wStyle, wX, wY);
+        setButtonLayout(buttonB1, 490, 70, wStyle, wX, wY);
         buttonB1.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonB1, mouseEvent, "B", 1, pStyle, wStyle));
 
         buttonC2 = new Button("C");
-        setButtonLayout(buttonC2, 520, 100, wStyle, wX, wY);
+        setButtonLayout(buttonC2, 520, 70, wStyle, wX, wY);
         buttonC2.addEventFilter(MouseEvent.ANY, mouseEvent ->
                 sound.play(buttonC2, mouseEvent, "C", 2, pStyle, wStyle));
 
