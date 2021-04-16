@@ -67,6 +67,7 @@ public class GUI extends Application {
         pane.setPadding(new Insets(10, 10, 10, 10));
         Scene scene = new Scene(pane, 600, 300);
 
+        PianoVisualizer p = new PianoVisualizer();
         Sound sound = new Sound();
 
         // combination box to select octaves
@@ -108,6 +109,11 @@ public class GUI extends Application {
                 //System.out.println(instrumentSelector.getText()));
                 sound.changeInstrument(instrumentLabel, instrumentSelector,
                         instrumentSelector.getText(), -1));
+
+        // button to open pianoVisualizer
+        Button pianoVisualizer = new Button("Press");
+        setButtonLayout(pianoVisualizer, 200, 260, "", 50, 25);
+        pianoVisualizer.setOnAction(actionEvent -> p.createPianoVisualizer());
 
         // instantiate buttons and handle mouse clicks for each button
         buttonC = new Button("C");
@@ -245,15 +251,16 @@ public class GUI extends Application {
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel,
-                increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF,
-                buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1,
-                buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
+                increaseInstrument, decreaseInstrument, pianoVisualizer, buttonC, buttonCs, buttonD, buttonDs,
+                buttonE, buttonF, buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1,
+                buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1,
+                buttonB1, buttonC2);
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void setButtonLayout(Button button, int xPos, int yPos, String style, int xSize, int ySize) {
+    public void setButtonLayout(Button button, int xPos, int yPos, String style, int xSize, int ySize) {
         setNodeLayout(button, xPos, yPos);
         button.setMinSize(xSize,ySize);
         button.setPrefSize(xSize, ySize);
