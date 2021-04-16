@@ -88,6 +88,7 @@ public class GUI extends Application {
         Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
         setNodeLayout(instrumentLabel, 320, 220);
 
+        // initializing the increment buttons
         String incrementInstrumentStyle = "-fx-font-size:9";
 
         Button instrumentConfirm = new Button("Enter");
@@ -244,22 +245,22 @@ public class GUI extends Application {
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel,
-                increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs,
-                buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1,
-                buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
+                increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF,
+                buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1,
+                buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void setButtonLayout(Button button, int x, int y, String style, int x1, int y1) {
-        setNodeLayout(button, x, y);
-        button.setMinSize(x1,y1);
-        button.setPrefSize(x1, y1);
-        button.setMaxSize(x1,y1);
+    private void setButtonLayout(Button button, int xPos, int yPos, String style, int xSize, int ySize) {
+        setNodeLayout(button, xPos, yPos);
+        button.setMinSize(xSize,ySize);
+        button.setPrefSize(xSize, ySize);
+        button.setMaxSize(xSize,ySize);
         button.setStyle(style);
         button.setAlignment(Pos.BOTTOM_CENTER);
-        if (style.equals(bStyle)) {
+        if (style.equals(bStyle)) { // make black keys overlay white keys
             button.setViewOrder(-1.0);
         }
     }
