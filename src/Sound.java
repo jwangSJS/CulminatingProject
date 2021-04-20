@@ -1,3 +1,8 @@
+// James Wang
+// PDS 2021
+// Mr. Garvin
+// Culminating Project
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

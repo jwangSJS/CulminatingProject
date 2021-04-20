@@ -1,3 +1,8 @@
+// James Wang
+// PDS 2021
+// Mr. Garvin
+// Culminating Project
+
 import javafx.application.Application;
 
 public class Main {
