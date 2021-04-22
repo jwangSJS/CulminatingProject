@@ -148,6 +148,7 @@ public class Sound {
     }
 
     public void playMoonlight(int song) {
+        player.changeInstrument(instrument);
 
         switch (song) {
             case 0:
@@ -155,7 +156,7 @@ public class Sound {
                         "B5s D6s C6s | A5i+A3s E4s A4s C5s E5s A5s | " +
                         "B5i+E3s E4s G#4s E5s G#5s B5s | C6i+A3s E4s A4s ");
             case 1:
-                player.play("T90 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          | " +
+                player.play("T180 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          | " +
                                        "V1 C#5i E5i A5i | Rqqq                        G#5i D#5i B4i | " +
                         "V0 Riii          | A5i C#6i D#6i E6i B5i G#5i Riii         | " +
                         "V1 A4i C#5i F#5i | Rqqq                       E5i B4i G#4i | " +
