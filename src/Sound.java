@@ -155,16 +155,14 @@ public class Sound {
                         "B5s D6s C6s | A5i+A3s E4s A4s C5s E5s A5s | " +
                         "B5i+E3s E4s G#4s E5s G#5s B5s | C6i+A3s E4s A4s ");
             case 1:
-                player.play(
-                        "T90 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          " +
-                                          "V1 C#5i E5i A5i | Rqqq                        G#5i D#5i B4i " +
-                                          "V0 Riii          | A5i C#6i D#6i E6i B5i G#5i Riii         | " +
-                                          "V1 A4i C#5i F#5i | Rqqq                       E5i B4i G#4i | " +
-                                          "V0 Riii         C#6i F#5i A5iii+Ri_F#6qi        C#6i F#5i A5i | " +
-                                          "V1 F#4h+Ri_A4i_C#5qq                E4h+Ri_A4i_C#5q.          | ");
-//                player.play("T[Adagio] V0 C#5i E5i A5i C#6i E6i F#6i G#6i " +
-//                        "D#6i B5i G#5i D#5i B4i | A4i C#5i F#5i A5i C#6i D#6i E6i B5i G#5i " +
-//                        "E5i B4i G#4i | F#4h+");
+                player.play("T90 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          | " +
+                                       "V1 C#5i E5i A5i | Rqqq                        G#5i D#5i B4i | " +
+                        "V0 Riii          | A5i C#6i D#6i E6i B5i G#5i Riii         | " +
+                        "V1 A4i C#5i F#5i | Rqqq                       E5i B4i G#4i | " +
+                        "V0 Riii         C#6iii+Ri_F#5i_A5i- A5-iii+F#6iii        C#6iii-+Ri_F#5i_A5i- | " +
+                        "V1 F#4qqq+Ri_A4i_C#5qq                E4qqq+Ri_A4i_C#5qq                      | " +
+                        "V0 C#6-iii+A5-iii   C#6q+Ri_F#5i_A5i- A5-iii+F#6iii         A6q+Ri_A5i_C#6i |" +
+                       " V1 D#4qqq+Ri_A4i_C#5qq                      C#4qqq+Ri_A4i_E5qq              |");
         }
     }
     // TODO: pedal function with shift key
