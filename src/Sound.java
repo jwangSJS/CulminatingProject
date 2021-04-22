@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.jfugue.midi.MidiDictionary;
+import org.jfugue.player.Player;
 import org.jfugue.realtime.RealtimePlayer;
 import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
@@ -145,4 +146,26 @@ public class Sound {
     public String findInstrumentName() {
         return MidiDictionary.INSTRUMENT_BYTE_TO_STRING.get((byte) instrument);
     }
+
+    public void playMoonlight(int song) {
+
+        switch (song) {
+            case 0:
+                player.play("T[Adagio] V0 E6s D#6s | E6s D#6s E6s " +
+                        "B5s D6s C6s | A5i+A3s E4s A4s C5s E5s A5s | " +
+                        "B5i+E3s E4s G#4s E5s G#5s B5s | C6i+A3s E4s A4s ");
+            case 1:
+                player.play(
+                        "T90 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          " +
+                                          "V1 C#5i E5i A5i | Rqqq                        G#5i D#5i B4i " +
+                                          "V0 Riii          | A5i C#6i D#6i E6i B5i G#5i Riii         | " +
+                                          "V1 A4i C#5i F#5i | Rqqq                       E5i B4i G#4i | " +
+                                          "V0 Riii         C#6i F#5i A5iii+Ri_F#6qi        C#6i F#5i A5i | " +
+                                          "V1 F#4h+Ri_A4i_C#5qq                E4h+Ri_A4i_C#5q.          | ");
+//                player.play("T[Adagio] V0 C#5i E5i A5i C#6i E6i F#6i G#6i " +
+//                        "D#6i B5i G#5i D#5i B4i | A4i C#5i F#5i A5i C#6i D#6i E6i B5i G#5i " +
+//                        "E5i B4i G#4i | F#4h+");
+        }
+    }
+    // TODO: pedal function with shift key
 }

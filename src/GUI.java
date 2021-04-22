@@ -18,6 +18,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import javax.sound.midi.MidiUnavailableException;
 import java.util.HashMap;
 
 public class GUI extends Application {
@@ -113,6 +115,10 @@ public class GUI extends Application {
                 //System.out.println(instrumentSelector.getText()));
                 sound.changeInstrument(instrumentLabel, instrumentSelector,
                         instrumentSelector.getText(), -1));
+
+        Button playMusic = new Button("Play Me!");
+        setButtonLayout(playMusic, 200, 250, "", 100, 20);
+        playMusic.setOnAction(actionEvent -> sound.playMoonlight(1));
 
         // instantiate buttons and handle mouse clicks for each button
         buttonC = new Button("C");
@@ -249,7 +255,7 @@ public class GUI extends Application {
         // stop the program safely when window is closed
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
-        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel,
+        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel, playMusic,
                 increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF,
                 buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1,
                 buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
