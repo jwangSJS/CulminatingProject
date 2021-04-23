@@ -112,10 +112,10 @@ public class GUI extends Application {
         Button decreaseInstrument = new Button("v");
         setButtonLayout(decreaseInstrument, 320, 260, incrementInstrumentStyle, 20, 20);
         decreaseInstrument.setOnAction(actionEvent ->
-                //System.out.println(instrumentSelector.getText()));
                 sound.changeInstrument(instrumentLabel, instrumentSelector,
                         instrumentSelector.getText(), -1));
 
+        // play sample song button
         Button playMusic = new Button("Play Me!");
         setButtonLayout(playMusic, 200, 250, "", 100, 20);
         playMusic.setOnAction(actionEvent -> sound.playMoonlight(1));

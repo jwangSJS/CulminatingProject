@@ -156,15 +156,28 @@ public class Sound {
                         "B5s D6s C6s | A5i+A3s E4s A4s C5s E5s A5s | " +
                         "B5i+E3s E4s G#4s E5s G#5s B5s | C6i+A3s E4s A4s ");
             case 1:
-                player.play("T180 V0 Riii         | C#6i E6i F#6i G#6i D#6i B5i Riii          | " +
-                                       "V1 C#5i E5i A5i | Rqqq                        G#5i D#5i B4i | " +
-                        "V0 Riii          | A5i C#6i D#6i E6i B5i G#5i Riii         | " +
-                        "V1 A4i C#5i F#5i | Rqqq                       E5i B4i G#4i | " +
-                        "V0 Riii         C#6iii+Ri_F#5i_A5i- A5-iii+F#6iii        C#6iii-+Ri_F#5i_A5i- | " +
-                        "V1 F#4qqq+Ri_A4i_C#5qq                E4qqq+Ri_A4i_C#5qq                      | " +
-                        "V0 C#6-iii+A5-iii   C#6q+Ri_F#5i_A5i- A5-iii+F#6iii         A6q+Ri_A5i_C#6i |" +
-                       " V1 D#4qqq+Ri_A4i_C#5qq                      C#4qqq+Ri_A4i_E5qq              |");
+                // Arabesque No.1 in E Major - Claude Debussy - Transcribed by James Wang
+                player.play("T180 " +
+                    "V0 Riii                  | C#6ia50 E6ia50 F#6ia50 G#6ia50 D#6ia50 B5ia50 Riii          | " +
+                    "V1 C#5ia50 E5ia50 A5ia50 | Rqqq                                 G#5ia50 D#5ia50 B4ia50 | " +
+                    "V0 Riii                   | A5ia55 C#6ia55 D#6ia55 E6ia55 B5ia55 G#5ia55 Riii | " +
+                    "V1 A4ia55 C#5ia55 F#5ia55 | Rqqq                       E5ia55 B4ia55 G#4ia55  | " +
+                    "V0 Riii         C#6iii+Ri_F#5i_A5i- A5-iii+F#6iii        C#6iii-+Ri_F#5i_A5i- | " +
+                    "V1 F#4qqq+Ri_A4i_C#5qq                E4qqq+Ri_A4i_C#5qq                      | " +
+                    "V0 C#6-iii+A5-iii   C#6q+Ri_F#5i_A5i- A5-iii+F#6iii         A6iii-+Ri_A5i_C#6i | " +
+                    "V1 D#4qqq+Ri_A4i_C#5qq                      C#4qqq+Ri_A4i_E5qq                 | " +
+                    "V0 A6-iii-      A6-qqq-a0d127                 A6-i G#6qq F#6qq | " +
+                    "V1 B3i F#4i A4i C#5i   D#5i F#5i A5i C#6i D#6i C#6i B5qq  A5qq | " +
+                    "V0 Riii      E6id40  F#6id40  C#6id40  E6id40  B5id40  C#6id40  G#5id40  B5id40  F#5id40 " +
+                    "V1 E3isa30d127 B3isa30d127 E4isa30d127 G#4isa30d127 B4isa30d127 G#4isa30d127 E4isa30d127 " +
+                    "V0             | G#5id40 E5id40 G#5id40 D#5qqid40                                            " +
+                    "V1 B3isa30d127 | E3isa30d127 C#4isa30d127 E4isa30d127 G#4isa30d127 C#5isa30d127 G#4isa30d127 " +
+                    "V0 C#5qq                    | B4iii                   E6ia50 F#6ia50 C#6ia50   E6ia50 B5ia50 "  +
+                    "V1 E4isa30d127 C#4isa30d127 | E3isa30d127 B4isa30d127 E4isa30d127 G#4isa30d127 B4isa30d127   " +
+                    "V0 C#6ia50   G#5ia50   B5ia50   F#5ia50 | G#5ia50 E5ia50 G#5ia50    D#5qqqa40               " +
+                    "V1 G#4isa30d127 E4isa30d127 B3isa30d127 | E3isa30d127 C#4isa30d127 E4isa30d127 G#4isa30d127 " +
+                    "V0                           C#5iiia40                | Rq " +
+                    "V1 C#5isa30d127 G#4isa30d127 E4isa30d127 C#4isa30d127 | Rq ");
         }
     }
-    // TODO: pedal function with shift key
 }
