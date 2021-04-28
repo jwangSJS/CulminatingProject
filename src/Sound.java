@@ -11,7 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.jfugue.midi.MidiDictionary;
-import org.jfugue.player.Player;
 import org.jfugue.realtime.RealtimePlayer;
 import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
@@ -207,6 +206,14 @@ public class Sound {
                     "V1 G#4isa30d127 E4isa30d127 B3isa30d127 | E3isa30d127 C#4isa30d127 E4isa30d127 G#4isa30d127 " +
                     "V0                           C#5iiia40                | Rq " +
                     "V1 C#5isa30d127 G#4isa30d127 E4isa30d127 C#4isa30d127 | Rq ");
+            case "Nocturne":
+                player.play("T45 TIME:12/8 " +
+                    "V0 Bb5i | G6qq F6i G6i F6qi Eb6q Bb5i " +
+                    "V1 Ri  | Eb3ia40 G4ia40+Eb5ia40 Bb4ia40+Eb5ia40+G5ia40 Eb4ia40 Ab4ia40+D5ia40 " +
+                    "V0                                                                      " +
+                    "V1 Cb5ia40+D5ia40+Ab5ia40 Eb3ia40 G4ia40+Eb5ia40 Bb4ia40+Eb5ia40+G5ia40 D3ia40 G4ia40+Eb5ia40 " +
+                    "V0                        | G6q (C6 C#6 C6 B5 C6)s*5:2                 C7q " +
+                    "V1 Bb4ia40+Eb5ia40+G5ia40 | C3ia40 G4ia40+E5ia40 Bb4ia40+E5ia40+G5ia40 C4ia40 G4ia40+E5ia40 ");
         }
     }
 }

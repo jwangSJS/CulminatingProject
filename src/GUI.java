@@ -152,7 +152,7 @@ public class GUI extends Application {
         });
 
         // combination box to select octaves
-        String[] songs = {"Arabesque"};
+        String[] songs = {"Arabesque", "Nocturne"};
         ComboBox songCombo = new ComboBox(FXCollections.observableArrayList(songs));
         setNodeLayout(songCombo, 140, 240);
         songCombo.getSelectionModel().select(0);
