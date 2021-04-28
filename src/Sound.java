@@ -85,22 +85,26 @@ public class Sound {
         octaveCombo.getSelectionModel().select(Integer.valueOf(octave) - 1);
     }
 
-    public void changeInstrument(Label instrumentLabel, String inst) {
+    public void changeInstrument(Label instrumentLabel, TextField instrumentSelector, String inst) {
         if (inst.equals("")) {
+            instrumentSelector.setText(String.valueOf(instrument));
             return;
         }
         try {
             Integer.parseInt(inst);
         } catch (NumberFormatException nfe) {
+            instrumentSelector.setText(String.valueOf(instrument));
             return;
         }
         int checkInst = Integer.parseInt(inst);
         if (checkInst < 1) {
             instrument = 1;
+            instrumentSelector.setText("1");
             instrumentLabel.setText(findInstrumentName());
             return;
         } else if (checkInst > 127) {
             instrument = 127;
+            instrumentSelector.setText("127");
             instrumentLabel.setText(findInstrumentName());
             return;
         }
@@ -109,13 +113,13 @@ public class Sound {
     }
 
     // method for instrument increment buttons
-    public void changeInstrument(Label instrumentLabel, TextField instrumentField, String inst, int increment) {
+    public void changeInstrument(Label instrumentLabel, TextField instrumentSelector, String inst, int increment) {
         int instrument = Integer.valueOf(inst) + increment;
         if (instrument < 1 || instrument > 127) {
             return;
         }
-        changeInstrument(instrumentLabel, String.valueOf(instrument));
-        instrumentField.setText(String.valueOf(instrument));
+        changeInstrument(instrumentLabel, instrumentSelector, String.valueOf(instrument));
+        instrumentSelector.setText(String.valueOf(instrument));
     }
 
     // converts the keybind to notes

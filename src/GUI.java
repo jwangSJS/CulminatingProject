@@ -132,7 +132,7 @@ public class GUI extends Application {
         Button instrumentConfirm = new Button("Enter");
         setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
         instrumentConfirm.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector.getText()));
+                sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText()));
 
         Button increaseInstrument = new Button("^");
         setButtonLayout(increaseInstrument, 320, 240, incrementButtonStyle, 20, 20);
@@ -151,7 +151,7 @@ public class GUI extends Application {
         setButtonLayout(playMusic, 200, 250, "", 90, 30);
         playMusic.setOnAction(actionEvent -> sound.playSampleSong(1));
 
-        // instantiate buttons and handle mouse clicks for each button
+        // instantiate keyboard buttons and handle mouse clicks for each button
         buttonC = new Button("C");
         setButtonLayout(buttonC, 100, 70, wStyle, wX, wY);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> {
@@ -457,6 +457,7 @@ public class GUI extends Application {
         };
     }
 
+    // map to pass button to Sound class
     private HashMap<KeyCode, Button> KeyBindToButtonMap(){
         HashMap<KeyCode, Button> buttonMap = new HashMap<>();
         buttonMap.put(KeyCode.Q, buttonC);
