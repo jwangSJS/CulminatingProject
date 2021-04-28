@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
 
 public class GUI extends Application {
@@ -90,7 +91,7 @@ public class GUI extends Application {
         Sound sound = new Sound();
 
         // combination box to select octaves
-        String[] octaves = {"1", "2", "3", "4", "5", "6", "7"};
+        String[] octaves = {"1", "2", "3", "4", "5", "6"};
         ComboBox octaveCombo = new ComboBox(FXCollections.observableArrayList(octaves));
         setNodeLayout(octaveCombo, 510, 240);
         octaveCombo.getSelectionModel().select(3);
@@ -131,32 +132,45 @@ public class GUI extends Application {
         // initializing the confirm and increment buttons
         Button instrumentConfirm = new Button("Enter");
         setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
-        instrumentConfirm.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText()));
+        instrumentConfirm.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText());
+            actionEvent.consume();
+        });
 
         Button increaseInstrument = new Button("^");
         setButtonLayout(increaseInstrument, 320, 240, incrementButtonStyle, 20, 20);
-        increaseInstrument.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector,
-                        instrumentSelector.getText(), 1));
+        increaseInstrument.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText(), 1);
+            actionEvent.consume();
+        });
 
         Button decreaseInstrument = new Button("v");
         setButtonLayout(decreaseInstrument, 320, 260, incrementButtonStyle, 20, 20);
-        decreaseInstrument.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector,
-                        instrumentSelector.getText(), -1));
+        decreaseInstrument.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText(), -1);
+            actionEvent.consume();
+        });
+
+        // combination box to select octaves
+        String[] songs = {"Arabesque"};
+        ComboBox songCombo = new ComboBox(FXCollections.observableArrayList(songs));
+        setNodeLayout(songCombo, 140, 240);
+        songCombo.getSelectionModel().select(0);
 
         // play sample song button
-        Button playMusic = new Button("Play Me!");
-        setButtonLayout(playMusic, 200, 250, "", 90, 30);
-        playMusic.setOnAction(actionEvent -> sound.playSampleSong(1));
+        Button playMusic = new Button("Play");
+        setButtonLayout(playMusic, 250, 240, "", 50, 25);
+        playMusic.setOnAction(actionEvent -> {
+            sound.playSampleSong(String.valueOf(songCombo.getValue()));
+            actionEvent.consume();
+        });
 
         // instantiate keyboard buttons and handle mouse clicks for each button
         buttonC = new Button("C");
         setButtonLayout(buttonC, 100, 70, wStyle, wX, wY);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> {
-                sound.play(buttonC, mouseEvent, "C", 0, pStyle, wStyle);
-                mouseEvent.consume();
+            sound.play(buttonC, mouseEvent, "C", 0, pStyle, wStyle);
+            mouseEvent.consume();
         });
 
         buttonCs = new Button("C#");
@@ -420,7 +434,7 @@ public class GUI extends Application {
         // stop the program safely when window is closed
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
-        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentLabel,
+        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentLabel, songCombo,
                 playMusic, increaseInstrument, decreaseInstrument, instrumentConfirm, increaseOctave, decreaseOctave,
                 buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs, buttonA,
                 buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1, buttonG1,

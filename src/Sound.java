@@ -18,8 +18,8 @@ import javax.sound.midi.MidiUnavailableException;
 
 public class Sound {
     public String mod = "5"; // first octave modifier
-    public String mod1; // second octave modifier
-    public String mod2; // third octave modifier
+    public String mod1;
+    public String mod2;
     public String mod3;
     RealtimePlayer player = new RealtimePlayer();
     int instrument = 1;
@@ -180,15 +180,11 @@ public class Sound {
         return MidiDictionary.INSTRUMENT_BYTE_TO_STRING.get((byte) instrument);
     }
 
-    public void playSampleSong(int song) {
+    public void playSampleSong(String song) {
         player.changeInstrument(instrument);
 
         switch (song) {
-            case 0:
-                player.play("T[Adagio] V0 E6s D#6s | E6s D#6s E6s " +
-                        "B5s D6s C6s | A5i+A3s E4s A4s C5s E5s A5s | " +
-                        "B5i+E3s E4s G#4s E5s G#5s B5s | C6i+A3s E4s A4s ");
-            case 1:
+            case "Arabesque":
                 // Arabesque No.1 in E Major - Claude Debussy - Transcribed by James Wang
                 player.play("T180 " +
                     "V0 Riii                  | C#6ia50 E6ia50 F#6ia50 G#6ia50 D#6ia50 B5ia50 Riii          | " +
