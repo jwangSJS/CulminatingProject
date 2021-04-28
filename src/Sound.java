@@ -4,6 +4,7 @@
 // Culminating Project
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -19,6 +20,7 @@ public class Sound {
     public String mod = "5"; // first octave modifier
     public String mod1; // second octave modifier
     public String mod2; // third octave modifier
+    public String mod3;
     RealtimePlayer player = new RealtimePlayer();
     int instrument = 1;
 
@@ -26,8 +28,10 @@ public class Sound {
         this.mod = mod;
         this.mod1 = String.valueOf(Integer.valueOf(mod) + 1);
         this.mod2 = String.valueOf(Integer.valueOf(mod) + 2);
+        this.mod3 = String.valueOf(Integer.valueOf(mod) + 3);
     }
 
+    // playing notes via mouse
     public void play(Button button, MouseEvent event, String rawNote, int relativeOctave,
                      String pressedStyle, String defaultStyle) {
         player.changeInstrument(instrument);
@@ -45,6 +49,7 @@ public class Sound {
 
     KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
+    // playing notes via keyboard
     public void play(KeyEvent event, Button button, String pressedStyle, String defaultStyle) {
         player.changeInstrument(instrument);
         String n = keyBindToNote(event);
@@ -69,6 +74,15 @@ public class Sound {
         mod = String.valueOf(Integer.valueOf(octave) + 1);
         mod1 = String.valueOf(Integer.valueOf(mod) + 1);
         mod2 = String.valueOf(Integer.valueOf(mod) + 2);
+        mod3 = String.valueOf(Integer.valueOf(mod) + 3);
+    }
+
+    public void changeOctave(String octave, ComboBox octaveCombo) {
+        if (Integer.valueOf(octave) > 6) { octave = String.valueOf(6); }
+        if (Integer.valueOf(octave) < 1) { octave = String.valueOf(1); }
+
+        changeOctave(octave);
+        octaveCombo.getSelectionModel().select(Integer.valueOf(octave) - 1);
     }
 
     public void changeInstrument(Label instrumentLabel, String inst) {
@@ -94,7 +108,7 @@ public class Sound {
         instrumentLabel.setText(findInstrumentName());
     }
 
-    // increment through instruments using two increment buttons
+    // method for instrument increment buttons
     public void changeInstrument(Label instrumentLabel, TextField instrumentField, String inst, int increment) {
         int instrument = Integer.valueOf(inst) + increment;
         if (instrument < 1 || instrument > 127) {
@@ -124,14 +138,26 @@ public class Sound {
             case O -> "D" + mod1;
             case DIGIT0 -> "D#" + mod1;
             case P -> "E" + mod1;
-            case Z -> "F" + mod1;
-            case S -> "F#" + mod1;
-            case X -> "G" + mod1;
-            case D -> "G#" + mod1;
-            case C -> "A" + mod1;
-            case F -> "A#" + mod1;
-            case V -> "B" + mod1;
-            case B -> "C" + mod2;
+            case OPEN_BRACKET -> "F" + mod1;
+            case EQUALS -> "F#" + mod1;
+            case CLOSE_BRACKET -> "G" + mod1;
+            case A -> "G#" + mod1;
+            case Z -> "A" + mod1;
+            case S -> "A#" + mod1;
+            case X -> "B" + mod1;
+            case C -> "C" + mod2;
+            case F -> "C#" + mod2;
+            case V -> "D" + mod2;
+            case G -> "D#" + mod2;
+            case B -> "E" + mod2;
+            case N -> "F" + mod2;
+            case J -> "F#" + mod2;
+            case M -> "G" + mod2;
+            case K -> "G#" + mod2;
+            case COMMA -> "A" + mod2;
+            case L -> "A#" + mod2;
+            case PERIOD -> "B" + mod2;
+            case SLASH -> "C" + mod3;
             default -> null;
         };
     }
@@ -141,6 +167,7 @@ public class Sound {
             case 0 -> mod;
             case 1 -> mod1;
             case 2 -> mod2;
+            case 3 -> mod3;
             default -> null;
         };
     }
