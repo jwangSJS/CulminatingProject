@@ -100,6 +100,9 @@ public class GUI extends Application {
             actionEvent.consume();
         });
 
+        Label octaveLabel = new Label("Select octave:");
+        setNodeLayout(octaveLabel, 500, 220);
+
         // octave increment buttons
         Button increaseOctave = new Button("^");
         setButtonLayout(increaseOctave, 480, 240, incrementButtonStyle, 20, 20);
@@ -116,9 +119,6 @@ public class GUI extends Application {
                     octaveCombo);
             actionEvent.consume();
         });
-
-        Label octaveLabel = new Label("Select octave:");
-        setNodeLayout(octaveLabel, 500, 220);
 
         // textfield to select instrument
         TextField instrumentSelector = new TextField();
@@ -164,6 +164,9 @@ public class GUI extends Application {
             sound.playSampleSong(String.valueOf(songCombo.getValue()));
             actionEvent.consume();
         });
+
+        Label sampleLabel = new Label("Select Sample Piece:");
+        setNodeLayout(sampleLabel, 135, 220);
 
         // instantiate keyboard buttons and handle mouse clicks for each button
         buttonC = new Button("C");
@@ -436,10 +439,10 @@ public class GUI extends Application {
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentLabel, songCombo,
                 playMusic, increaseInstrument, decreaseInstrument, instrumentConfirm, increaseOctave, decreaseOctave,
-                buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs, buttonA,
-                buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1, buttonG1,
-                buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2, buttonCs2, buttonD2, buttonDs2, buttonE2, buttonF2,
-                buttonFs2, buttonG2, buttonGs2, buttonA2, buttonAs2, buttonB2, buttonC3);
+                sampleLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs,
+                buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1,
+                buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2, buttonCs2, buttonD2, buttonDs2, buttonE2,
+                buttonF2, buttonFs2, buttonG2, buttonGs2, buttonA2, buttonAs2, buttonB2, buttonC3);
 
         primaryStage.setScene(scene);
         primaryStage.show();

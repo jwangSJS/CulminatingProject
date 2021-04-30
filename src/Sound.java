@@ -207,13 +207,45 @@ public class Sound {
                     "V0                           C#5iiia40                | Rq " +
                     "V1 C#5isa30d127 G#4isa30d127 E4isa30d127 C#4isa30d127 | Rq ");
             case "Nocturne":
-                player.play("T45 TIME:12/8 " +
-                    "V0 Bb5i | G6qq F6i G6i F6qi Eb6q Bb5i " +
-                    "V1 Ri  | Eb3ia40 G4ia40+Eb5ia40 Bb4ia40+Eb5ia40+G5ia40 Eb4ia40 Ab4ia40+D5ia40 " +
+                // Nocturne Op.9 No.2 - Frédéric Chopin - Transcribed by James Wang
+                player.play("T50 TIME:12/8 " +
+                    "V0 Bb5i | G6qq F6i G6i F6qi Eb6q Bb5i                                          " +
+                    "V1 Ri   | Eb3ia35 G4ia35+Eb5ia35 Bb4ia35+Eb5ia35+G5ia35 Eb4ia35 Ab4ia35+D5ia35 " +
+                    "V0                                                                                            " +
+                    "V1 Cb5ia35+D5ia35+Ab5ia35 Eb3ia35 G4ia35+Eb5ia35 Bb4ia35+Eb5ia35+G5ia35 D3ia35 G4ia35+Eb5ia35 " +
+                    "V0                        | G6q                 (C6 C#6 C6 B5 C6)s*5:2 C7q                  " +
+                    "V1 Bb4ia35+Eb5ia35+G5ia35 | C3ia36 G4ia37+E5ia37 Bb4ia40+E5ia40+G5ia40 C4ia40 G4ia40+E5ia40 " +
+                    "V0 G6i                    Bb6qi                                         Ab6q                 " +
+                    "V1 C5ia40+E5ia40+Bb5ia40  F3ia40 F4ia40+Db5ia40 Bb4ia40+Db5ia40+E5ia40  F3ia40 F4ia39+C5ia39 " +
+                    "V0 G6i                   | F6qi                                         G6q                  " +
+                    "V1 Ab4ia37+C5ia37+F5ia37 | Bb3ia35 F4ia35+D5ia35 Bb4ia35+D5ia35+Ab5ia35 B3ia35 G4ia37+F5ia37 " +
+                    "V0 D6i                  Eb6qi                                       C6qi                   " +
+                    "V1 D5ia38+F5ia38+G5ia38 C4ia40 G4ia40+Eb5ia40 C5ia40+Eb5ia40+G5ia40 A3ia40 Gb4ia40+Eb5ia40 " +
+                    "V0                        | Bb5i    D7i            C7i                     Bb6s Ab6s " +
+                    "V1 C5ia40+Eb5ia40+Gb5ia40 | Bb3ia40 F4ia40+Eb5ia40 Bb4ia40+Eb5ia40+Ab5ia40 Bb2ia40   " +
+                    "V0 G6s Ab6s      C6s D6s         Eb6qi                                         Rq      " +
+                    "V1 F4ia40+D5ia40 Bb4ia40+Ab5ia40 Eb3ia40 G4ia40+Eb5ia40 Bb4ia40+Eb5ia40+G5ia40 Eb4ia38 " +
+                    "V0                Bb5i                   | G6qi                                          " +
+                    "V1 G4ia36+Eb5ia36 Bb4ia35+Eb5ia35+G5ia35 | Eb3ia35 G4ia35+Eb5ia35 Bb4ia35+Eb5ia35+G5ia35 " +
+                    "V0 F6s G6s (F6 G6 F6)t*3:2a48 E6s F6s G6s                F6i     Eb6qs          " +
+                    "V1 Eb4ia35 Ab4ia35+D5ia35         Cb5ia35+D5ia35+Ab5ia35 Eb3ia35 G4ia35+Eb5ia35 " +
+                    "V0                                F6s (Eb6 F6 Eb6)t*3:2 D6s Eb6s F6s               | G6s    " +
+                    "V1 Bb4ia35+Eb5ia35+G5ia35 Eb3ia35 G4ia35+Eb5ia35            Bb4ia35+Eb5ia35+G5ia35 | C4ia36 " +
+                    "V0 B5s C6s Db6s      C6s F6s               E6s Ab6s G6s Db7s      C7s G6s                " +
+                    "V1     G4ia37+E5ia37 Bb4ia38+E5ia38+G5ia38 C4ia39   G4ia40+E5ia40 C5ia40+E5ia40+Bb5ia40  " +
+                    "V0 Bb6qi                                        Ab6q                 G6i                   " +
+                    "V1 F3ia39 F4ia37+Db5ia37 Bb4ia35+Db5ia35+E5ia35 F3ia35 F4ia35+C5ia35 Ab4ia35+C5ia35+F5ia35 " +
+                    "V0 (F6 G6 F6 G6 F6 G6 F6 G6 F6 G6 F6 G6)x.*12:8a40 " +
+                        "(F6 G6 F6 G6 F6 G6 F6 G6 F6 G6 F6 G6)x.*12:8a43 " +
+                    "V1 Bb3ia35 F4ia35+D5ia35 Bb4ia35+D5ia35+Ab5ia35                                               " +
+                    "V0 E6sa48 F6sa52 G6ia58  G6i           D6i                  Eb6qi                              " +
+                    "V1 Ri    B3ia35 G4ia37+F5ia37 D5ia38+F5ia38+G5ia38 C4ia40 G4ia40+Eb5ia40 C5ia40+Eb5ia40+G5ia40 " +
+                    "V0 C6qi                                          | Bb5i    D7i             " +
+                    "V1 A3ia40 Gb4ia40+Eb5ia40 C5ia40+Eb5ia40+Gb5ia40 | Bb3ia40 F4ia40+Eb5ia40  " +
+                    "V0 C7i                     Bb6s Ab6s G6s Ab6s    Ab6x C6t. D6s   Eb6qi                  " +
+                    "V1 Bb4ia40+Eb5ia40+Ab5ia40 Bb2ia40 F4ia40+D5ia40 Bb4ia40+Ab5ia40 Eb3ia40 G4ia40+Eb5ia40 " +
                     "V0                                                                      " +
-                    "V1 Cb5ia40+D5ia40+Ab5ia40 Eb3ia40 G4ia40+Eb5ia40 Bb4ia40+Eb5ia40+G5ia40 D3ia40 G4ia40+Eb5ia40 " +
-                    "V0                        | G6q (C6 C#6 C6 B5 C6)s*5:2                 C7q " +
-                    "V1 Bb4ia40+Eb5ia40+G5ia40 | C3ia40 G4ia40+E5ia40 Bb4ia40+E5ia40+G5ia40 C4ia40 G4ia40+E5ia40 ");
+                    "V1 Bb4ia40+Eb5ia40+G5ia40 Eb4ia38 G4ia36+Eb5ia36 Bb4ia35+Eb5ia35+G5ia35 ");
         }
     }
 }
