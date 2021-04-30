@@ -206,6 +206,7 @@ public class Sound {
                     "V1 G#4isa30d127 E4isa30d127 B3isa30d127 | E3isa30d127 C#4isa30d127 E4isa30d127 G#4isa30d127 " +
                     "V0                           C#5iiia40                | Rq " +
                     "V1 C#5isa30d127 G#4isa30d127 E4isa30d127 C#4isa30d127 | Rq ");
+                break;
             case "Nocturne":
                 // Nocturne Op.9 No.2 - Frédéric Chopin - Transcribed by James Wang
                 player.play("T50 TIME:12/8 " +
@@ -246,6 +247,7 @@ public class Sound {
                     "V1 Bb4ia40+Eb5ia40+Ab5ia40 Bb2ia40 F4ia40+D5ia40 Bb4ia40+Ab5ia40 Eb3ia40 G4ia40+Eb5ia40 " +
                     "V0                                                                      " +
                     "V1 Bb4ia40+Eb5ia40+G5ia40 Eb4ia38 G4ia36+Eb5ia36 Bb4ia35+Eb5ia35+G5ia35 ");
+                break;
         }
     }
 }
