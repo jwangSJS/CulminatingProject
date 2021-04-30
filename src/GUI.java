@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
 
 public class GUI extends Application {
@@ -47,6 +48,18 @@ public class GUI extends Application {
     Button buttonAs1;
     Button buttonB1;
     Button buttonC2;
+    Button buttonCs2;
+    Button buttonD2;
+    Button buttonDs2;
+    Button buttonE2;
+    Button buttonF2;
+    Button buttonFs2;
+    Button buttonG2;
+    Button buttonGs2;
+    Button buttonA2;
+    Button buttonAs2;
+    Button buttonB2;
+    Button buttonC3;
 
     // white key style
     String wStyle = "-fx-border-color: black;" +
@@ -60,6 +73,8 @@ public class GUI extends Application {
     String pStyle = "-fx-background-color: #d94141; " +
             "-fx-font-size:7";
 
+    String incrementButtonStyle = "-fx-font-size:9";
+
     // sizes of keys
     int wX = 25;
     int wY = 140;
@@ -71,19 +86,39 @@ public class GUI extends Application {
         primaryStage.setTitle("Piano");
         Pane pane = new Pane();
         pane.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(pane, 600, 300);
+        Scene scene = new Scene(pane, 800, 300);
 
         Sound sound = new Sound();
 
         // combination box to select octaves
-        String[] octaves = {"1", "2", "3", "4", "5", "6", "7"};
+        String[] octaves = {"1", "2", "3", "4", "5", "6"};
         ComboBox octaveCombo = new ComboBox(FXCollections.observableArrayList(octaves));
-        setNodeLayout(octaveCombo, 500, 240);
+        setNodeLayout(octaveCombo, 510, 240);
         octaveCombo.getSelectionModel().select(3);
-        octaveCombo.setOnAction(actionEvent -> sound.changeOctave(String.valueOf(octaveCombo.getValue())));
+        octaveCombo.setOnAction(actionEvent -> {
+            sound.changeOctave(String.valueOf(octaveCombo.getValue()));
+            actionEvent.consume();
+        });
 
         Label octaveLabel = new Label("Select octave:");
-        setNodeLayout(octaveLabel, 490, 220);
+        setNodeLayout(octaveLabel, 500, 220);
+
+        // octave increment buttons
+        Button increaseOctave = new Button("^");
+        setButtonLayout(increaseOctave, 480, 240, incrementButtonStyle, 20, 20);
+        increaseOctave.setOnAction(actionEvent -> {
+            sound.changeOctave(String.valueOf(Integer.valueOf(String.valueOf(octaveCombo.getValue())) + 1),
+                    octaveCombo);
+            actionEvent.consume();
+        });
+
+        Button decreaseOctave = new Button("v");
+        setButtonLayout(decreaseOctave, 480, 260, incrementButtonStyle, 20, 20);
+        decreaseOctave.setOnAction(actionEvent -> {
+            sound.changeOctave(String.valueOf(Integer.valueOf(String.valueOf(octaveCombo.getValue())) - 1),
+                    octaveCombo);
+            actionEvent.consume();
+        });
 
         // textfield to select instrument
         TextField instrumentSelector = new TextField();
@@ -94,37 +129,51 @@ public class GUI extends Application {
         Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
         setNodeLayout(instrumentLabel, 320, 220);
 
-        // initializing the increment buttons
-        String incrementInstrumentStyle = "-fx-font-size:9";
-
+        // initializing the confirm and increment buttons
         Button instrumentConfirm = new Button("Enter");
         setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
-        instrumentConfirm.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector.getText()));
+        instrumentConfirm.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText());
+            actionEvent.consume();
+        });
 
         Button increaseInstrument = new Button("^");
-        setButtonLayout(increaseInstrument, 320, 240, incrementInstrumentStyle, 20, 20);
-        increaseInstrument.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector,
-                        instrumentSelector.getText(), 1));
+        setButtonLayout(increaseInstrument, 320, 240, incrementButtonStyle, 20, 20);
+        increaseInstrument.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText(), 1);
+            actionEvent.consume();
+        });
 
         Button decreaseInstrument = new Button("v");
-        setButtonLayout(decreaseInstrument, 320, 260, incrementInstrumentStyle, 20, 20);
-        decreaseInstrument.setOnAction(actionEvent ->
-                sound.changeInstrument(instrumentLabel, instrumentSelector,
-                        instrumentSelector.getText(), -1));
+        setButtonLayout(decreaseInstrument, 320, 260, incrementButtonStyle, 20, 20);
+        decreaseInstrument.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText(), -1);
+            actionEvent.consume();
+        });
+
+        // combination box to select octaves
+        String[] songs = {"Arabesque", "Nocturne"};
+        ComboBox songCombo = new ComboBox(FXCollections.observableArrayList(songs));
+        setNodeLayout(songCombo, 140, 240);
+        songCombo.getSelectionModel().select(0);
 
         // play sample song button
-        Button playMusic = new Button("Play Me!");
-        setButtonLayout(playMusic, 200, 250, "", 90, 30);
-        playMusic.setOnAction(actionEvent -> sound.playSampleSong(1));
+        Button playMusic = new Button("Play");
+        setButtonLayout(playMusic, 250, 240, "", 50, 25);
+        playMusic.setOnAction(actionEvent -> {
+            sound.playSampleSong(String.valueOf(songCombo.getValue()));
+            actionEvent.consume();
+        });
 
-        // instantiate buttons and handle mouse clicks for each button
+        Label sampleLabel = new Label("Select Sample Piece:");
+        setNodeLayout(sampleLabel, 135, 220);
+
+        // instantiate keyboard buttons and handle mouse clicks for each button
         buttonC = new Button("C");
         setButtonLayout(buttonC, 100, 70, wStyle, wX, wY);
         buttonC.addEventFilter(MouseEvent.ANY, mouseEvent -> {
-                sound.play(buttonC, mouseEvent, "C", 0, pStyle, wStyle);
-                mouseEvent.consume();
+            sound.play(buttonC, mouseEvent, "C", 0, pStyle, wStyle);
+            mouseEvent.consume();
         });
 
         buttonCs = new Button("C#");
@@ -222,12 +271,14 @@ public class GUI extends Application {
         setButtonLayout(buttonD1, 340, 70, wStyle, wX, wY);
         buttonD1.addEventFilter(MouseEvent.ANY, mouseEvent -> {
             sound.play(buttonD1, mouseEvent, "D", 1, pStyle, wStyle);
+            mouseEvent.consume();
         });
 
         buttonDs1 = new Button("D#");
         setButtonLayout(buttonDs1, 357, 70, bStyle, bX, bY);
         buttonDs1.addEventFilter(MouseEvent.ANY, mouseEvent -> {
             sound.play(buttonDs1, mouseEvent, "D#", 1, pStyle, bStyle);
+            mouseEvent.consume();
         });
 
         buttonE1 = new Button("E");
@@ -241,12 +292,14 @@ public class GUI extends Application {
         setButtonLayout(buttonF1, 400, 70, wStyle, wX, wY);
         buttonF1.addEventFilter(MouseEvent.ANY, mouseEvent -> {
             sound.play(buttonF1, mouseEvent, "F", 1, pStyle, wStyle);
+            mouseEvent.consume();
         });
 
         buttonFs1 = new Button("F#");
         setButtonLayout(buttonFs1, 417, 70, bStyle, bX, bY);
         buttonFs1.addEventFilter(MouseEvent.ANY, mouseEvent -> {
             sound.play(buttonFs1, mouseEvent, "F#", 1, pStyle, bStyle);
+            mouseEvent.consume();
         });
 
         buttonG1 = new Button("G");
@@ -291,19 +344,105 @@ public class GUI extends Application {
             mouseEvent.consume();
         });
 
+        buttonCs2 = new Button("C#");
+        setButtonLayout(buttonCs2, 537, 70, bStyle, bX, bY);
+        buttonCs2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonCs2, mouseEvent, "C#", 2, pStyle, bStyle);
+            mouseEvent.consume();
+        });
+
+        buttonD2 = new Button("D");
+        setButtonLayout(buttonD2, 550, 70, wStyle, wX, wY);
+        buttonD2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonD2, mouseEvent, "D", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonDs2 = new Button("D#");
+        setButtonLayout(buttonDs2, 567, 70, bStyle, bX, bY);
+        buttonDs2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonDs2, mouseEvent, "D#", 2, pStyle, bStyle);
+            mouseEvent.consume();
+        });
+
+        buttonE2 = new Button("E");
+        setButtonLayout(buttonE2, 580, 70, wStyle, wX, wY);
+        buttonE2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonE2, mouseEvent, "E", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonF2 = new Button("F");
+        setButtonLayout(buttonF2, 610, 70, wStyle, wX, wY);
+        buttonF2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonF2, mouseEvent, "F", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonFs2 = new Button("F#");
+        setButtonLayout(buttonFs2, 627, 70, bStyle, bX, bY);
+        buttonFs2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonFs2, mouseEvent, "F#", 2, pStyle, bStyle);
+            mouseEvent.consume();
+        });
+
+        buttonG2 = new Button("G");
+        setButtonLayout(buttonG2, 640, 70, wStyle, wX, wY);
+        buttonG2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonG2, mouseEvent, "G", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonGs2 = new Button("G#");
+        setButtonLayout(buttonGs2, 657, 70, bStyle, bX, bY);
+        buttonGs2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonGs2, mouseEvent, "G#", 2, pStyle, bStyle);
+            mouseEvent.consume();
+        });
+
+        buttonA2 = new Button("A");
+        setButtonLayout(buttonA2, 670, 70, wStyle, wX, wY);
+        buttonA2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonA2, mouseEvent, "A", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonAs2 = new Button("A#");
+        setButtonLayout(buttonAs2, 687, 70, bStyle, bX, bY);
+        buttonAs2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonAs2, mouseEvent, "A#", 2, pStyle, bStyle);
+            mouseEvent.consume();
+        });
+
+        buttonB2 = new Button("B");
+        setButtonLayout(buttonB2, 700, 70, wStyle, wX, wY);
+        buttonB2.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonB2, mouseEvent, "B", 2, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
+        buttonC3 = new Button("C");
+        setButtonLayout(buttonC3, 730, 70, wStyle, wX, wY);
+        buttonC3.addEventFilter(MouseEvent.ANY, mouseEvent -> {
+            sound.play(buttonC3, mouseEvent, "C", 3, pStyle, wStyle);
+            mouseEvent.consume();
+        });
+
         HashMap<KeyCode, Button> buttonRef = KeyBindToButtonMap();
 
-        // handle keyboard inputs
+        // handle keyboard inputs, do not consume
         pane.addEventFilter(KeyEvent.ANY, keyEvent ->
-                sound.play(keyEvent, buttonRef.get(keyEvent.getCode()), pStyle, getButtonStyle(keyEvent)));
+            sound.play(keyEvent, buttonRef.get(keyEvent.getCode()), pStyle, getButtonStyle(keyEvent)));
 
         // stop the program safely when window is closed
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
-        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentConfirm, instrumentLabel, playMusic,
-                increaseInstrument, decreaseInstrument, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF,
-                buttonFs, buttonG, buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1,
-                buttonE1, buttonF1, buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2);
+        pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentLabel, songCombo,
+                playMusic, increaseInstrument, decreaseInstrument, instrumentConfirm, increaseOctave, decreaseOctave,
+                sampleLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs,
+                buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1,
+                buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2, buttonCs2, buttonD2, buttonDs2, buttonE2,
+                buttonF2, buttonFs2, buttonG2, buttonGs2, buttonA2, buttonAs2, buttonB2, buttonC3);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -328,39 +467,53 @@ public class GUI extends Application {
 
     private String getButtonStyle(KeyEvent e) {
         return switch(e.getCode()) {
-            case Q, W , E, R, T, Y, U, I, O, P, Z, X, C, V, B -> wStyle;
-            case DIGIT2, DIGIT3, DIGIT5, DIGIT6, DIGIT7, DIGIT9, DIGIT0, S, D, F -> bStyle;
+            case Q, W , E, R, T, Y, U, I, O, P, OPEN_BRACKET, CLOSE_BRACKET, Z, X, C, V, B, N, M, COMMA, PERIOD,
+                    SLASH -> wStyle;
+            case DIGIT2, DIGIT3, DIGIT5, DIGIT6, DIGIT7, DIGIT9, DIGIT0, EQUALS, A, S, F, G, J, K, L -> bStyle;
             default -> null;
         };
     }
 
+    // map to pass button to Sound class
     private HashMap<KeyCode, Button> KeyBindToButtonMap(){
-        HashMap<KeyCode, Button> buttonReference = new HashMap<>();
-        buttonReference.put(KeyCode.Q, buttonC);
-        buttonReference.put(KeyCode.DIGIT2, buttonCs);
-        buttonReference.put(KeyCode.W, buttonD);
-        buttonReference.put(KeyCode.DIGIT3, buttonDs);
-        buttonReference.put(KeyCode.E, buttonE);
-        buttonReference.put(KeyCode.R, buttonF);
-        buttonReference.put(KeyCode.DIGIT5, buttonFs);
-        buttonReference.put(KeyCode.T, buttonG);
-        buttonReference.put(KeyCode.DIGIT6, buttonGs);
-        buttonReference.put(KeyCode.Y, buttonA);
-        buttonReference.put(KeyCode.DIGIT7, buttonAs);
-        buttonReference.put(KeyCode.U, buttonB);
-        buttonReference.put(KeyCode.I, buttonC1);
-        buttonReference.put(KeyCode.DIGIT9, buttonCs1);
-        buttonReference.put(KeyCode.O, buttonD1);
-        buttonReference.put(KeyCode.DIGIT0, buttonDs1);
-        buttonReference.put(KeyCode.P, buttonE1);
-        buttonReference.put(KeyCode.Z, buttonF1);
-        buttonReference.put(KeyCode.S, buttonFs1);
-        buttonReference.put(KeyCode.X, buttonG1);
-        buttonReference.put(KeyCode.D, buttonGs1);
-        buttonReference.put(KeyCode.C, buttonA1);
-        buttonReference.put(KeyCode.F, buttonAs1);
-        buttonReference.put(KeyCode.V, buttonB1);
-        buttonReference.put(KeyCode.B, buttonC2);
-        return buttonReference;
+        HashMap<KeyCode, Button> buttonMap = new HashMap<>();
+        buttonMap.put(KeyCode.Q, buttonC);
+        buttonMap.put(KeyCode.DIGIT2, buttonCs);
+        buttonMap.put(KeyCode.W, buttonD);
+        buttonMap.put(KeyCode.DIGIT3, buttonDs);
+        buttonMap.put(KeyCode.E, buttonE);
+        buttonMap.put(KeyCode.R, buttonF);
+        buttonMap.put(KeyCode.DIGIT5, buttonFs);
+        buttonMap.put(KeyCode.T, buttonG);
+        buttonMap.put(KeyCode.DIGIT6, buttonGs);
+        buttonMap.put(KeyCode.Y, buttonA);
+        buttonMap.put(KeyCode.DIGIT7, buttonAs);
+        buttonMap.put(KeyCode.U, buttonB);
+        buttonMap.put(KeyCode.I, buttonC1);
+        buttonMap.put(KeyCode.DIGIT9, buttonCs1);
+        buttonMap.put(KeyCode.O, buttonD1);
+        buttonMap.put(KeyCode.DIGIT0, buttonDs1);
+        buttonMap.put(KeyCode.P, buttonE1);
+        buttonMap.put(KeyCode.OPEN_BRACKET, buttonF1);
+        buttonMap.put(KeyCode.EQUALS, buttonFs1);
+        buttonMap.put(KeyCode.CLOSE_BRACKET, buttonG1);
+        buttonMap.put(KeyCode.A, buttonGs1);
+        buttonMap.put(KeyCode.Z, buttonA1);
+        buttonMap.put(KeyCode.S, buttonAs1);
+        buttonMap.put(KeyCode.X, buttonB1);
+        buttonMap.put(KeyCode.C, buttonC2);
+        buttonMap.put(KeyCode.F, buttonCs2);
+        buttonMap.put(KeyCode.V, buttonD2);
+        buttonMap.put(KeyCode.G, buttonDs2);
+        buttonMap.put(KeyCode.B, buttonE2);
+        buttonMap.put(KeyCode.N, buttonF2);
+        buttonMap.put(KeyCode.J, buttonFs2);
+        buttonMap.put(KeyCode.M, buttonG2);
+        buttonMap.put(KeyCode.K, buttonGs2);
+        buttonMap.put(KeyCode.COMMA, buttonA2);
+        buttonMap.put(KeyCode.L, buttonAs2);
+        buttonMap.put(KeyCode.PERIOD, buttonB2);
+        buttonMap.put(KeyCode.SLASH, buttonC3);
+        return buttonMap;
     }
 }
