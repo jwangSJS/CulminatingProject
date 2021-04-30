@@ -86,7 +86,7 @@ public class GUI extends Application {
         primaryStage.setTitle("Piano");
         Pane pane = new Pane();
         pane.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(pane, 800, 300);
+        Scene scene = new Scene(pane, 800, 330);
 
         Sound sound = new Sound();
 
@@ -129,7 +129,7 @@ public class GUI extends Application {
         Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
         setNodeLayout(instrumentLabel, 320, 220);
 
-        // initializing the confirm and increment buttons
+        // confirm and increment instrument buttons
         Button instrumentConfirm = new Button("Enter");
         setButtonLayout(instrumentConfirm, 410, 240, "", 50, 25);
         instrumentConfirm.setOnAction(actionEvent -> {
@@ -148,6 +148,14 @@ public class GUI extends Application {
         setButtonLayout(decreaseInstrument, 320, 260, incrementButtonStyle, 20, 20);
         decreaseInstrument.setOnAction(actionEvent -> {
             sound.changeInstrument(instrumentLabel, instrumentSelector, instrumentSelector.getText(), -1);
+            actionEvent.consume();
+        });
+
+        // random instrument button
+        Button instrumentRandom = new Button("Random Instrument");
+        setButtonLayout(instrumentRandom, 347, 270, "-fx-font-size:11", 120, 25);
+        instrumentRandom.setOnAction(actionEvent -> {
+            sound.changeInstrument(instrumentLabel, instrumentSelector);
             actionEvent.consume();
         });
 
@@ -438,11 +446,11 @@ public class GUI extends Application {
         primaryStage.setOnCloseRequest(closeEvent -> Runtime.getRuntime().halt(0));
 
         pane.getChildren().addAll(octaveCombo, octaveLabel, instrumentSelector, instrumentLabel, songCombo,
-                playMusic, increaseInstrument, decreaseInstrument, instrumentConfirm, increaseOctave, decreaseOctave,
-                sampleLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG, buttonGs,
-                buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1, buttonFs1,
-                buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2, buttonCs2, buttonD2, buttonDs2, buttonE2,
-                buttonF2, buttonFs2, buttonG2, buttonGs2, buttonA2, buttonAs2, buttonB2, buttonC3);
+                playMusic, increaseInstrument, decreaseInstrument, instrumentConfirm, instrumentRandom, increaseOctave,
+                decreaseOctave, sampleLabel, buttonC, buttonCs, buttonD, buttonDs, buttonE, buttonF, buttonFs, buttonG,
+                buttonGs, buttonA, buttonAs, buttonB, buttonC1, buttonCs1, buttonD1, buttonDs1, buttonE1, buttonF1,
+                buttonFs1, buttonG1, buttonGs1, buttonA1, buttonAs1, buttonB1, buttonC2, buttonCs2, buttonD2, buttonDs2,
+                buttonE2, buttonF2, buttonFs2, buttonG2, buttonGs2, buttonA2, buttonAs2, buttonB2, buttonC3);
 
         primaryStage.setScene(scene);
         primaryStage.show();

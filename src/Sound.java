@@ -14,6 +14,8 @@ import org.jfugue.midi.MidiDictionary;
 import org.jfugue.realtime.RealtimePlayer;
 import org.jfugue.theory.Note;
 import javax.sound.midi.MidiUnavailableException;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class Sound {
     public String mod = "5"; // first octave modifier
@@ -117,6 +119,13 @@ public class Sound {
         if (instrument < 1 || instrument > 127) {
             return;
         }
+        changeInstrument(instrumentLabel, instrumentSelector, String.valueOf(instrument));
+        instrumentSelector.setText(String.valueOf(instrument));
+    }
+
+    // method for random instruments
+    public void changeInstrument(Label instrumentLabel, TextField instrumentSelector) {
+        int instrument = ThreadLocalRandom.current().nextInt(1, 127 + 1);
         changeInstrument(instrumentLabel, instrumentSelector, String.valueOf(instrument));
         instrumentSelector.setText(String.valueOf(instrument));
     }
