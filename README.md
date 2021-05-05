@@ -3,6 +3,8 @@ CulminatingProject - Virtual Piano
 James Wang - PDS - Garvin
 
 This program simulates a piano using JavaFX and JFugue.
+JFugue Library Download: http://www.jfugue.org/download.html
+JavaFX download: https://gluonhq.com/products/javafx/
 
 Terminology
 ----------------------------------
@@ -55,5 +57,5 @@ However, the important concept to note is the intra-class communication between 
 classes. The GUI class acts as a linear class, which initializes and instantiates objects and variables.
 The Sound class effectively acts as a loop which handles active events such as note presses and
 instrument changes. In order for the program to work, the GUI class must pass to the Sound class
-active objects, such as buttons, which must change or do something according to user input. Therefore,
-it is imperative to understand the way that the GUI class interacts with the Sound class.
+active objects, such as buttons, which must change or do something according to user input. In this way,
+the program handles live input from a piano.
