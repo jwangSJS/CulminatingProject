@@ -27,8 +27,8 @@ some integer multiple of the fundamental frequency.
 
 Piano
 ----------------------------------
-There are 25 keys on the on-screen piano, which is from C to C and includes
-2 full ranges of notes (starting from C) and one high C in a third relative octave.
+There are 37 keys on the on-screen piano, which is from C to C and includes
+3 full ranges of notes (starting from C) and one high C in a fourthd relative octave.
 
 The instrument selector takes an integer range, inclusive, of [0,127]. It is advised
 to skim the midiDictionary for JFugue here: https://soundprogramming.net/file-formats/general-midi-instrument-list/
@@ -39,6 +39,10 @@ The octave selector allows the user to select an octave starting with the lowest
 in the on-screen piano, in this case, the left-most C. This means that for an octave
 selected n, the highest note on the on-screen piano, the right-most C, would have an
 octave of n + 2. 
+
+The keybinds are as follows: QWERTYUIOP[] forms the first line of white keys, and then
+ZXCVBNM<>/ forms the next line of white keys. The respective black keys are above the
+white key rows and are in their relative positions to the white key rows.
 
 Class Structure
 ----------------------------------
