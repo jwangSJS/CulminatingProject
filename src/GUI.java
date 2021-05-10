@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
 
 public class GUI extends Application {
@@ -86,7 +85,7 @@ public class GUI extends Application {
         primaryStage.setTitle("Piano");
         Pane pane = new Pane();
         pane.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(pane, 800, 330);
+        Scene scene = new Scene(pane, 835, 330);
 
         Sound sound = new Sound();
 
@@ -126,7 +125,7 @@ public class GUI extends Application {
         setNodeLayout(instrumentSelector, 350, 240);
         instrumentSelector.setText("1");
 
-        Label instrumentLabel = new Label("Instrument: " + sound.findInstrumentName());
+        Label instrumentLabel = new Label("Instrument: " + sound.getCurrentInstrumentName());
         setNodeLayout(instrumentLabel, 320, 220);
 
         // confirm and increment instrument buttons
@@ -438,7 +437,7 @@ public class GUI extends Application {
 
         HashMap<KeyCode, Button> buttonRef = KeyBindToButtonMap();
 
-        // handle keyboard inputs, do not consume
+        // handle keyboard inputs for all notes
         pane.addEventFilter(KeyEvent.ANY, keyEvent ->
             sound.play(keyEvent, buttonRef.get(keyEvent.getCode()), pStyle, getButtonStyle(keyEvent)));
 
@@ -456,6 +455,7 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
+    // set up layouts for buttons
     private void setButtonLayout(Button button, int xPos, int yPos, String style, int xSize, int ySize) {
         setNodeLayout(button, xPos, yPos);
         button.setMinSize(xSize,ySize);
@@ -473,6 +473,7 @@ public class GUI extends Application {
         node.setLayoutY(y);
     }
 
+    // associate each piano key with white or black key styles
     private String getButtonStyle(KeyEvent e) {
         return switch(e.getCode()) {
             case Q, W , E, R, T, Y, U, I, O, P, OPEN_BRACKET, CLOSE_BRACKET, Z, X, C, V, B, N, M, COMMA, PERIOD,

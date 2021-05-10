@@ -18,7 +18,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Sound {
-    public String mod = "5"; // first octave modifier
+    // octave modifiers
+    public String mod = "5";
     public String mod1;
     public String mod2;
     public String mod3;
@@ -41,33 +42,36 @@ public class Sound {
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
             player.startNote(note);
-            button.setStyle(pressedStyle); // change button color when pressed
+            button.setStyle(pressedStyle);
+
         } else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
             player.stopNote(note);
             button.setStyle(defaultStyle);
         }
     }
 
-    KeyCode wasPressed = null; // KeyCode flag to handle continuous keyEvents from holding down a key
+    KeyCode previousKeyPress = null; // KeyCode flag to handle continuous keyEvents from holding down a key
 
     // playing notes via keyboard
     public void play(KeyEvent event, Button button, String pressedStyle, String defaultStyle) {
         player.changeInstrument(instrument);
-        String n = keyBindToNote(event);
 
+        // only handle accepted keybinds
+        String n = keyBindToString(event);
         if (n == null) { return; }
 
         Note note = new Note(n);
-        KeyCode isPressed = event.getCode();
+        KeyCode currentKeyPress = event.getCode();
 
-        if (event.getEventType().equals(KeyEvent.KEY_PRESSED) && isPressed != wasPressed) {
+        if (event.getEventType().equals(KeyEvent.KEY_PRESSED) && currentKeyPress != previousKeyPress) {
             player.startNote(note);
-            button.setStyle(pressedStyle); // change button style when pressed
-            wasPressed = event.getCode();
+            button.setStyle(pressedStyle);
+            previousKeyPress = event.getCode();
+
         } else if (event.getEventType().equals(KeyEvent.KEY_RELEASED)) {
             player.stopNote(note);
             button.setStyle(defaultStyle);
-            wasPressed = null;
+            previousKeyPress = null;
         }
     }
 
@@ -78,6 +82,7 @@ public class Sound {
         mod3 = String.valueOf(Integer.valueOf(mod) + 3);
     }
 
+    // change octave and text displayed in octave combination box
     public void changeOctave(String octave, ComboBox octaveCombo) {
         if (Integer.valueOf(octave) > 6) { octave = String.valueOf(6); }
         if (Integer.valueOf(octave) < 1) { octave = String.valueOf(1); }
@@ -87,6 +92,7 @@ public class Sound {
     }
 
     public void changeInstrument(Label instrumentLabel, TextField instrumentSelector, String inst) {
+        // handle non - integer inputs
         if (inst.equals("")) {
             instrumentSelector.setText(String.valueOf(instrument));
             return;
@@ -97,20 +103,23 @@ public class Sound {
             instrumentSelector.setText(String.valueOf(instrument));
             return;
         }
+
+        // bounds check instrument selection
         int checkInst = Integer.parseInt(inst);
         if (checkInst < 1) {
             instrument = 1;
             instrumentSelector.setText("1");
-            instrumentLabel.setText(findInstrumentName());
+            instrumentLabel.setText(getCurrentInstrumentName());
             return;
         } else if (checkInst > 127) {
             instrument = 127;
             instrumentSelector.setText("127");
-            instrumentLabel.setText(findInstrumentName());
+            instrumentLabel.setText(getCurrentInstrumentName());
             return;
         }
+
         instrument = checkInst;
-        instrumentLabel.setText(findInstrumentName());
+        instrumentLabel.setText(getCurrentInstrumentName());
     }
 
     // method for instrument increment buttons
@@ -131,7 +140,7 @@ public class Sound {
     }
 
     // converts the keybind to notes
-    private String keyBindToNote(KeyEvent event) {
+    private String keyBindToString(KeyEvent event) {
         return switch (event.getCode()) {
             case Q -> "C" + mod;
             case DIGIT2 -> "C#" + mod;
@@ -184,7 +193,7 @@ public class Sound {
         };
     }
 
-    public String findInstrumentName() {
+    public String getCurrentInstrumentName() {
         return MidiDictionary.INSTRUMENT_BYTE_TO_STRING.get((byte) instrument);
     }
 
